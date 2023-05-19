@@ -26,6 +26,6 @@ links = [
 for l in links:
     try:
         os.symlink(l[0], l[1])
-    except Exception:
-        print('failed to link')
+    except Exception as e:
+        print(f'failed to link {e}')
         pass

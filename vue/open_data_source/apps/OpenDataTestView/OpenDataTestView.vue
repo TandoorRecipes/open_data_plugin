@@ -14,6 +14,7 @@ import Vue from "vue"
 import {BootstrapVue} from "bootstrap-vue"
 
 import "bootstrap-vue/dist/bootstrap-vue.css"
+import {ApiApiFactory} from "../../utils/openapi";
 
 Vue.use(BootstrapVue)
 
@@ -31,8 +32,8 @@ export default {
         }
     },
     mounted() {
-
-
+        let apiFactory = new ApiApiFactory()
+        apiFactory.listOpenDataUnits()
 
     },
     methods: {
