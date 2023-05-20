@@ -7,7 +7,7 @@
 
         <button @click="show_create_modal = !show_create_modal">Toggle</button>
 
-        <generic-modal-form :model="OPEN_DATA_UNIT" :action="Actions.CREATE" :show="show_create_modal"/>
+        <generic-modal-form :model="OpenDataModels.OPEN_DATA_UNIT" :models="OpenDataModels" :action="Actions.CREATE" :show="show_create_modal"/>
 
 
         <h1>List</h1>
@@ -29,6 +29,7 @@ import {Actions} from "@/utils/models";
 
 Vue.use(BootstrapVue)
 import VueI18n from 'vue-i18n'
+import {ModelMixin} from "../../utils/models";
 Vue.use(VueI18n)
 
 export default {
@@ -38,52 +39,13 @@ export default {
             return Actions
         }
     },
-    mixins: [],
+    mixins: [ModelMixin],
     components: {GenericModalForm},
     data() {
         return {
             food: undefined,
             open_data_units: [],
-            OPEN_DATA_UNIT: {
-                name: "OpenDataUnit",
-                apiName: "OpenDataUnit",
-                apiClient:  new ApiApiFactory(),
-                paginated: true,
-                create: {
-                    params: [["name", "plural_name", "comment", "slug",]],
-                    form: {
-                        show_help: true,
-                        name: {
-                            form_field: true,
-                            type: "text",
-                            field: "name",
-                            label: "Name",
-                            placeholder: "",
-                        },
-                        plural_name: {
-                            form_field: true,
-                            type: "text",
-                            field: "plural_name",
-                            label: "Plural name",
-                            placeholder: "",
-                        },
-                        comment: {
-                            form_field: true,
-                            type: "text",
-                            field: "comment",
-                            label: "comment",
-                            placeholder: "",
-                        },
-                        slug: {
-                            form_field: true,
-                            type: "text",
-                            field: "slug",
-                            label: "Slug",
-                        },
-                    },
-                },
-                merge: true,
-            },
+
             show_create_modal: false,
         }
     },
