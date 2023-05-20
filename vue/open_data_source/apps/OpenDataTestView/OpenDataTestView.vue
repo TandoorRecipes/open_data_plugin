@@ -10,7 +10,7 @@
         <generic-modal-form :model="OPEN_DATA_UNIT" :action="Actions.CREATE" :show="show_create_modal"/>
 
 
-        <h1>Liust</h1>
+        <h1>List</h1>
         <ul>
             <li v-for="x in open_data_units" v-bind:key="x.id">{{x}}</li>
         </ul>
@@ -47,6 +47,7 @@ export default {
             OPEN_DATA_UNIT: {
                 name: "OpenDataUnit",
                 apiName: "OpenDataUnit",
+                apiClient:  new ApiApiFactory(),
                 paginated: true,
                 create: {
                     params: [["name", "plural_name", "comment", "slug",]],

@@ -10,5 +10,4 @@ class OpenDataUnitSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = OpenDataUnit
-        fields = (
-            'id', 'slug', 'name',)
+        fields = ( 'id', 'slug', 'name', 'plural_name',)
