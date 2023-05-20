@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import App from './OpenDataTestView.vue'
-//import i18n from '@/i18n'
+import i18n from '@/i18n'
 import {createPinia, PiniaVuePlugin} from "pinia";
 
 Vue.config.productionTip = false
@@ -17,6 +17,6 @@ const pinia = createPinia()
 
 new Vue({
     pinia,
-   // i18n,
+    i18n,
     render: h => h(App),
 }).$mount('#app')
