@@ -3,7 +3,7 @@ const BundleTracker = require("webpack-bundle-tracker")
 const plugin_pages = {
     open_data_test_view: {
         entry: "./open_data_source/apps/OpenDataTestView/main.js",
-        chunks: ["chunk-vendors"],
+        chunks: ["open-data-plugin-chunk-vendors","open-data-plugin-locales-chunk","open-data-plugin-api-chunk"],
     }
 }
 
@@ -47,19 +47,19 @@ module.exports = {
                 cacheGroups: {
                     locale: {
                         test: /[\\/]src[\\/]locales[\\/]/,
-                        name: "locales-chunk",
+                        name: "open-data-plugin-locales-chunk",
                         chunks: "all",
                         priority: 3,
                     },
                     api: {
                         test: /[\\/]src[\\/]utils[\\/]openapi[\\/]/,
-                        name: "api-chunk",
+                        name: "open-data-plugin-api-chunk",
                         chunks: "all",
                         priority: 3,
                     },
                     vendor: {
                         test: /[\\/]node_modules[\\/]/,
-                        name: "chunk-vendors",
+                        name: "open-data-plugin-chunk-vendors",
                         chunks: "all",
                         priority: 1,
                     },
