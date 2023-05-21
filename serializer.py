@@ -1,3 +1,4 @@
+from django.db.models import Q
 from drf_writable_nested import WritableNestedModelSerializer
 from rest_framework import serializers
 
@@ -7,7 +8,11 @@ from recipes.plugins.open_data_plugin.models import OpenDataUnit, OpenDataFood, 
 class OpenDataUnitSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         validated_data['created_by'] = self.context['request'].user
-        return super().create(validated_data)
+
+        slug = validated_data.pop('slug')
+        name = validated_data.pop('name')
+        obj, created = OpenDataUnit.objects.get_or_create(slug=slug, name=name, defaults=validated_data)
+        return obj
 
     class Meta:
         model = OpenDataUnit
@@ -16,8 +21,20 @@ class OpenDataUnitSerializer(serializers.ModelSerializer):
 
 class OpenDataCategorySerializer(serializers.ModelSerializer):
     def create(self, validated_data):
+        print('RRRRRRRUUUUNNNING')
         validated_data['created_by'] = self.context['request'].user
-        return super().create(validated_data)
+
+        slug = validated_data.pop('slug')
+        name = validated_data.pop('name')
+        if obj := OpenDataCategory.objects.filter(Q(slug=slug) | Q(name=name)).first():
+            return obj
+
+        obj, created = OpenDataCategory.objects.get_or_create(slug=slug, name=name, defaults=validated_data)
+        return obj
+
+    def update(self, instance, validated_data):
+        print('UPDATE')
+        return super(OpenDataCategorySerializer, self).update(instance, validated_data)
 
     class Meta:
         model = OpenDataCategory
@@ -71,16 +88,21 @@ class OpenDataFoodPropertySerializer(WritableNestedModelSerializer):
 
 
 class OpenDataFoodSerializer(WritableNestedModelSerializer):
-    store_category = OpenDataUnitSerializer(required=False)
-    preferred_unit_metric = OpenDataUnitSerializer(required=False)
-    preferred_shopping_unit_metric = OpenDataUnitSerializer(required=False)
-    preferred_unit_imperial = OpenDataUnitSerializer(required=False)
-    preferred_shopping_unit_imperial = OpenDataUnitSerializer(required=False)
-    properties = OpenDataFoodPropertySerializer(required=False, many=True)
+    store_category = OpenDataCategorySerializer()
+    preferred_unit_metric = OpenDataUnitSerializer()
+    preferred_shopping_unit_metric = OpenDataUnitSerializer()
+    preferred_unit_imperial = OpenDataUnitSerializer()
+    preferred_shopping_unit_imperial = OpenDataUnitSerializer()
+    properties = OpenDataFoodPropertySerializer(allow_null=True, many=True)
 
     def create(self, validated_data):
+        print('FOOOOOOOOOOOOOOOOOOOOOD')
         validated_data['created_by'] = self.context['request'].user
         return super().create(validated_data)
+
+    def update(self, instance, validated_data):
+        print('FOOOOOOOOOOOOOOOD UPDATE')
+        return super().update(instance, validated_data)
 
     class Meta:
         model = OpenDataFood

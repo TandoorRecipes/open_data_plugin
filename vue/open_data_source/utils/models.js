@@ -168,42 +168,7 @@ export class OpenDataModels extends Models {
         create: {
             params: [["slug", "name", "plural_name", "preferred_unit_metric", "comment",]],
             form: {
-                show_help: true,
-                slug: {
-                    form_field: true,
-                    type: "text",
-                    field: "slug",
-                    label: "Slug",
-                },
-                name: {
-                    form_field: true,
-                    type: "text",
-                    field: "name",
-                    label: "Name",
-                    placeholder: "",
-                },
-                plural_name: {
-                    form_field: true,
-                    type: "text",
-                    field: "plural_name",
-                    label: "Plural name",
-                    placeholder: "",
-                },
-                preferred_unit_metric: {
-                    form_field: true,
-                    type: "text",
-                    field: "plural_name",
-                    label: "Plural name",
-                    placeholder: "",
-                },
-                comment: {
-                    form_field: true,
-                    type: "text",
-                    field: "comment",
-                    label: "comment",
-                    placeholder: "",
-                },
-
+                component: "OpenDataFoodEditComponent",
             },
         },
         merge: true,
