@@ -7,6 +7,10 @@ from recipes.settings import DEBUG
 
 open_data_router = routers.DefaultRouter()
 open_data_router.register(r'open-data-unit', api.OpenDataUnitViewSet)
+open_data_router.register(r'open-data-category', api.OpenDataCategoryViewSet)
+open_data_router.register(r'open-data-store', api.OpenDataStoreViewSet)
+open_data_router.register(r'open-data-property', api.OpenDataPropertyViewSet)
+open_data_router.register(r'open-data-conversion', api.OpenDataConversionViewSet)
 open_data_router.register(r'open-data-food', api.OpenDataFoodViewSet)
 
 urlpatterns = [

@@ -27,6 +27,7 @@ export default {
     mixins: [ApiMixin],
     props: {
         model: {type: Object},
+        refresh: {type: Number},
     },
     data() {
         return {
@@ -38,7 +39,10 @@ export default {
     },
     computed: {},
     watch: {
-        model: function (){
+        model: function () {
+            this.loadData()
+        },
+        refresh: function () {
             this.loadData()
         }
     },

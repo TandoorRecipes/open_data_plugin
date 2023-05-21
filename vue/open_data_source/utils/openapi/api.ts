@@ -1904,6 +1904,330 @@ export interface MealType {
 /**
  * 
  * @export
+ * @interface OpenDataCategory
+ */
+export interface OpenDataCategory {
+    /**
+     * 
+     * @type {number}
+     * @memberof OpenDataCategory
+     */
+    'id'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof OpenDataCategory
+     */
+    'slug': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OpenDataCategory
+     */
+    'name': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OpenDataCategory
+     */
+    'comment'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface OpenDataConversion
+ */
+export interface OpenDataConversion {
+    /**
+     * 
+     * @type {number}
+     * @memberof OpenDataConversion
+     */
+    'id'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof OpenDataConversion
+     */
+    'slug': string;
+    /**
+     * 
+     * @type {OpenDataConversionFood}
+     * @memberof OpenDataConversion
+     */
+    'food': OpenDataConversionFood;
+    /**
+     * 
+     * @type {string}
+     * @memberof OpenDataConversion
+     */
+    'base_amount'?: string;
+    /**
+     * 
+     * @type {OpenDataConversionFoodStoreCategory}
+     * @memberof OpenDataConversion
+     */
+    'base_unit': OpenDataConversionFoodStoreCategory;
+    /**
+     * 
+     * @type {string}
+     * @memberof OpenDataConversion
+     */
+    'converted_amount'?: string;
+    /**
+     * 
+     * @type {OpenDataConversionFoodStoreCategory}
+     * @memberof OpenDataConversion
+     */
+    'converted_unit': OpenDataConversionFoodStoreCategory;
+    /**
+     * 
+     * @type {string}
+     * @memberof OpenDataConversion
+     */
+    'source': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OpenDataConversion
+     */
+    'comment'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface OpenDataConversionFood
+ */
+export interface OpenDataConversionFood {
+    /**
+     * 
+     * @type {number}
+     * @memberof OpenDataConversionFood
+     */
+    'id'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof OpenDataConversionFood
+     */
+    'slug': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OpenDataConversionFood
+     */
+    'name': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OpenDataConversionFood
+     */
+    'plural_name': string;
+    /**
+     * 
+     * @type {OpenDataConversionFoodStoreCategory}
+     * @memberof OpenDataConversionFood
+     */
+    'store_category'?: OpenDataConversionFoodStoreCategory;
+    /**
+     * 
+     * @type {OpenDataConversionFoodStoreCategory}
+     * @memberof OpenDataConversionFood
+     */
+    'preferred_unit_metric'?: OpenDataConversionFoodStoreCategory;
+    /**
+     * 
+     * @type {OpenDataConversionFoodStoreCategory}
+     * @memberof OpenDataConversionFood
+     */
+    'preferred_shopping_unit_metric'?: OpenDataConversionFoodStoreCategory;
+    /**
+     * 
+     * @type {OpenDataConversionFoodStoreCategory}
+     * @memberof OpenDataConversionFood
+     */
+    'preferred_unit_imperial'?: OpenDataConversionFoodStoreCategory;
+    /**
+     * 
+     * @type {OpenDataConversionFoodStoreCategory}
+     * @memberof OpenDataConversionFood
+     */
+    'preferred_shopping_unit_imperial'?: OpenDataConversionFoodStoreCategory;
+    /**
+     * 
+     * @type {Array<OpenDataConversionFoodPropertiesInner>}
+     * @memberof OpenDataConversionFood
+     */
+    'properties'?: Array<OpenDataConversionFoodPropertiesInner>;
+    /**
+     * 
+     * @type {string}
+     * @memberof OpenDataConversionFood
+     */
+    'fdc_id': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OpenDataConversionFood
+     */
+    'comment'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface OpenDataConversionFoodPropertiesInner
+ */
+export interface OpenDataConversionFoodPropertiesInner {
+    /**
+     * 
+     * @type {number}
+     * @memberof OpenDataConversionFoodPropertiesInner
+     */
+    'id'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof OpenDataConversionFoodPropertiesInner
+     */
+    'slug': string;
+    /**
+     * 
+     * @type {OpenDataConversionFoodPropertiesInnerProperty}
+     * @memberof OpenDataConversionFoodPropertiesInner
+     */
+    'property': OpenDataConversionFoodPropertiesInnerProperty;
+    /**
+     * 
+     * @type {string}
+     * @memberof OpenDataConversionFoodPropertiesInner
+     */
+    'property_amount'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OpenDataConversionFoodPropertiesInner
+     */
+    'comment'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface OpenDataConversionFoodPropertiesInnerProperty
+ */
+export interface OpenDataConversionFoodPropertiesInnerProperty {
+    /**
+     * 
+     * @type {number}
+     * @memberof OpenDataConversionFoodPropertiesInnerProperty
+     */
+    'id'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof OpenDataConversionFoodPropertiesInnerProperty
+     */
+    'slug': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OpenDataConversionFoodPropertiesInnerProperty
+     */
+    'name': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OpenDataConversionFoodPropertiesInnerProperty
+     */
+    'unit'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OpenDataConversionFoodPropertiesInnerProperty
+     */
+    'comment'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface OpenDataConversionFoodStoreCategory
+ */
+export interface OpenDataConversionFoodStoreCategory {
+    /**
+     * 
+     * @type {number}
+     * @memberof OpenDataConversionFoodStoreCategory
+     */
+    'id'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof OpenDataConversionFoodStoreCategory
+     */
+    'slug': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OpenDataConversionFoodStoreCategory
+     */
+    'name': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OpenDataConversionFoodStoreCategory
+     */
+    'plural_name'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OpenDataConversionFoodStoreCategory
+     */
+    'base_unit'?: OpenDataConversionFoodStoreCategoryBaseUnitEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof OpenDataConversionFoodStoreCategory
+     */
+    'type': OpenDataConversionFoodStoreCategoryTypeEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof OpenDataConversionFoodStoreCategory
+     */
+    'comment'?: string;
+}
+
+export const OpenDataConversionFoodStoreCategoryBaseUnitEnum = {
+    G: 'G',
+    Kg: 'KG',
+    Ml: 'ML',
+    L: 'L',
+    Ounce: 'OUNCE',
+    Pound: 'POUND',
+    FluidOunce: 'FLUID_OUNCE',
+    Tsp: 'TSP',
+    Tbsp: 'TBSP',
+    Cup: 'CUP',
+    Pint: 'PINT',
+    Quart: 'QUART',
+    Gallon: 'GALLON',
+    ImperialFluidOunce: 'IMPERIAL_FLUID_OUNCE',
+    ImperialPint: 'IMPERIAL_PINT',
+    ImperialQuart: 'IMPERIAL_QUART',
+    ImperialGallon: 'IMPERIAL_GALLON'
+} as const;
+
+export type OpenDataConversionFoodStoreCategoryBaseUnitEnum = typeof OpenDataConversionFoodStoreCategoryBaseUnitEnum[keyof typeof OpenDataConversionFoodStoreCategoryBaseUnitEnum];
+export const OpenDataConversionFoodStoreCategoryTypeEnum = {
+    Weight: 'WEIGHT',
+    Volume: 'VOLUME',
+    Other: 'OTHER'
+} as const;
+
+export type OpenDataConversionFoodStoreCategoryTypeEnum = typeof OpenDataConversionFoodStoreCategoryTypeEnum[keyof typeof OpenDataConversionFoodStoreCategoryTypeEnum];
+
+/**
+ * 
+ * @export
  * @interface OpenDataFood
  */
 export interface OpenDataFood {
@@ -1933,41 +2257,188 @@ export interface OpenDataFood {
     'plural_name': string;
     /**
      * 
-     * @type {OpenDataFoodPreferredUnitMetric}
+     * @type {OpenDataConversionFoodStoreCategory}
      * @memberof OpenDataFood
      */
-    'preferred_unit_metric'?: OpenDataFoodPreferredUnitMetric;
+    'store_category'?: OpenDataConversionFoodStoreCategory;
+    /**
+     * 
+     * @type {OpenDataConversionFoodStoreCategory}
+     * @memberof OpenDataFood
+     */
+    'preferred_unit_metric'?: OpenDataConversionFoodStoreCategory;
+    /**
+     * 
+     * @type {OpenDataConversionFoodStoreCategory}
+     * @memberof OpenDataFood
+     */
+    'preferred_shopping_unit_metric'?: OpenDataConversionFoodStoreCategory;
+    /**
+     * 
+     * @type {OpenDataConversionFoodStoreCategory}
+     * @memberof OpenDataFood
+     */
+    'preferred_unit_imperial'?: OpenDataConversionFoodStoreCategory;
+    /**
+     * 
+     * @type {OpenDataConversionFoodStoreCategory}
+     * @memberof OpenDataFood
+     */
+    'preferred_shopping_unit_imperial'?: OpenDataConversionFoodStoreCategory;
+    /**
+     * 
+     * @type {Array<OpenDataConversionFoodPropertiesInner>}
+     * @memberof OpenDataFood
+     */
+    'properties'?: Array<OpenDataConversionFoodPropertiesInner>;
+    /**
+     * 
+     * @type {string}
+     * @memberof OpenDataFood
+     */
+    'fdc_id': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OpenDataFood
+     */
+    'comment'?: string;
 }
 /**
  * 
  * @export
- * @interface OpenDataFoodPreferredUnitMetric
+ * @interface OpenDataProperty
  */
-export interface OpenDataFoodPreferredUnitMetric {
+export interface OpenDataProperty {
     /**
      * 
      * @type {number}
-     * @memberof OpenDataFoodPreferredUnitMetric
+     * @memberof OpenDataProperty
      */
     'id'?: number;
     /**
      * 
      * @type {string}
-     * @memberof OpenDataFoodPreferredUnitMetric
+     * @memberof OpenDataProperty
      */
     'slug': string;
     /**
      * 
      * @type {string}
-     * @memberof OpenDataFoodPreferredUnitMetric
+     * @memberof OpenDataProperty
      */
     'name': string;
     /**
      * 
      * @type {string}
-     * @memberof OpenDataFoodPreferredUnitMetric
+     * @memberof OpenDataProperty
      */
-    'plural_name'?: string;
+    'unit'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OpenDataProperty
+     */
+    'comment'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface OpenDataStore
+ */
+export interface OpenDataStore {
+    /**
+     * 
+     * @type {number}
+     * @memberof OpenDataStore
+     */
+    'id'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof OpenDataStore
+     */
+    'slug': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OpenDataStore
+     */
+    'name': string;
+    /**
+     * 
+     * @type {Array<OpenDataStoreCategoryToStoreInner>}
+     * @memberof OpenDataStore
+     */
+    'category_to_store': Array<OpenDataStoreCategoryToStoreInner> | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof OpenDataStore
+     */
+    'comment'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface OpenDataStoreCategoryToStoreInner
+ */
+export interface OpenDataStoreCategoryToStoreInner {
+    /**
+     * 
+     * @type {number}
+     * @memberof OpenDataStoreCategoryToStoreInner
+     */
+    'id'?: number;
+    /**
+     * 
+     * @type {OpenDataStoreCategoryToStoreInnerCategory}
+     * @memberof OpenDataStoreCategoryToStoreInner
+     */
+    'category': OpenDataStoreCategoryToStoreInnerCategory;
+    /**
+     * 
+     * @type {number}
+     * @memberof OpenDataStoreCategoryToStoreInner
+     */
+    'store': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof OpenDataStoreCategoryToStoreInner
+     */
+    'order'?: number;
+}
+/**
+ * 
+ * @export
+ * @interface OpenDataStoreCategoryToStoreInnerCategory
+ */
+export interface OpenDataStoreCategoryToStoreInnerCategory {
+    /**
+     * 
+     * @type {number}
+     * @memberof OpenDataStoreCategoryToStoreInnerCategory
+     */
+    'id'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof OpenDataStoreCategoryToStoreInnerCategory
+     */
+    'slug': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OpenDataStoreCategoryToStoreInnerCategory
+     */
+    'name': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OpenDataStoreCategoryToStoreInnerCategory
+     */
+    'comment'?: string;
 }
 /**
  * 
@@ -1999,7 +2470,55 @@ export interface OpenDataUnit {
      * @memberof OpenDataUnit
      */
     'plural_name'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OpenDataUnit
+     */
+    'base_unit'?: OpenDataUnitBaseUnitEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof OpenDataUnit
+     */
+    'type': OpenDataUnitTypeEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof OpenDataUnit
+     */
+    'comment'?: string;
 }
+
+export const OpenDataUnitBaseUnitEnum = {
+    G: 'G',
+    Kg: 'KG',
+    Ml: 'ML',
+    L: 'L',
+    Ounce: 'OUNCE',
+    Pound: 'POUND',
+    FluidOunce: 'FLUID_OUNCE',
+    Tsp: 'TSP',
+    Tbsp: 'TBSP',
+    Cup: 'CUP',
+    Pint: 'PINT',
+    Quart: 'QUART',
+    Gallon: 'GALLON',
+    ImperialFluidOunce: 'IMPERIAL_FLUID_OUNCE',
+    ImperialPint: 'IMPERIAL_PINT',
+    ImperialQuart: 'IMPERIAL_QUART',
+    ImperialGallon: 'IMPERIAL_GALLON'
+} as const;
+
+export type OpenDataUnitBaseUnitEnum = typeof OpenDataUnitBaseUnitEnum[keyof typeof OpenDataUnitBaseUnitEnum];
+export const OpenDataUnitTypeEnum = {
+    Weight: 'WEIGHT',
+    Volume: 'VOLUME',
+    Other: 'OTHER'
+} as const;
+
+export type OpenDataUnitTypeEnum = typeof OpenDataUnitTypeEnum[keyof typeof OpenDataUnitTypeEnum];
+
 /**
  * 
  * @export
@@ -4518,6 +5037,72 @@ export const ApiApiAxiosParamCreator = function (configuration?: Configuration) 
         },
         /**
          * 
+         * @param {OpenDataCategory} [openDataCategory] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createOpenDataCategory: async (openDataCategory?: OpenDataCategory, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/open-data-category/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(openDataCategory, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {OpenDataConversion} [openDataConversion] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createOpenDataConversion: async (openDataConversion?: OpenDataConversion, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/open-data-conversion/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(openDataConversion, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @param {OpenDataFood} [openDataFood] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -4543,6 +5128,72 @@ export const ApiApiAxiosParamCreator = function (configuration?: Configuration) 
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = serializeDataIfNeeded(openDataFood, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {OpenDataProperty} [openDataProperty] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createOpenDataProperty: async (openDataProperty?: OpenDataProperty, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/open-data-property/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(openDataProperty, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {OpenDataStore} [openDataStore] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createOpenDataStore: async (openDataStore?: OpenDataStore, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/open-data-store/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(openDataStore, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -5608,6 +6259,72 @@ export const ApiApiAxiosParamCreator = function (configuration?: Configuration) 
         },
         /**
          * 
+         * @param {string} id A unique integer value identifying this open data category.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        destroyOpenDataCategory: async (id: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('destroyOpenDataCategory', 'id', id)
+            const localVarPath = `/api/open-data-category/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} id A unique integer value identifying this open data conversion.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        destroyOpenDataConversion: async (id: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('destroyOpenDataConversion', 'id', id)
+            const localVarPath = `/api/open-data-conversion/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @param {string} id A unique integer value identifying this open data food.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -5616,6 +6333,72 @@ export const ApiApiAxiosParamCreator = function (configuration?: Configuration) 
             // verify required parameter 'id' is not null or undefined
             assertParamExists('destroyOpenDataFood', 'id', id)
             const localVarPath = `/api/open-data-food/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} id A unique integer value identifying this open data property.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        destroyOpenDataProperty: async (id: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('destroyOpenDataProperty', 'id', id)
+            const localVarPath = `/api/open-data-property/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} id A unique integer value identifying this open data store.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        destroyOpenDataStore: async (id: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('destroyOpenDataStore', 'id', id)
+            const localVarPath = `/api/open-data-store/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -6777,8 +7560,124 @@ export const ApiApiAxiosParamCreator = function (configuration?: Configuration) 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
+        listOpenDataCategorys: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/open-data-category/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listOpenDataConversions: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/open-data-conversion/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
         listOpenDataFoods: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/open-data-food/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listOpenDataPropertys: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/open-data-property/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listOpenDataStores: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/open-data-store/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -8357,6 +9256,80 @@ export const ApiApiAxiosParamCreator = function (configuration?: Configuration) 
         },
         /**
          * 
+         * @param {string} id A unique integer value identifying this open data category.
+         * @param {OpenDataCategory} [openDataCategory] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        partialUpdateOpenDataCategory: async (id: string, openDataCategory?: OpenDataCategory, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('partialUpdateOpenDataCategory', 'id', id)
+            const localVarPath = `/api/open-data-category/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(openDataCategory, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} id A unique integer value identifying this open data conversion.
+         * @param {OpenDataConversion} [openDataConversion] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        partialUpdateOpenDataConversion: async (id: string, openDataConversion?: OpenDataConversion, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('partialUpdateOpenDataConversion', 'id', id)
+            const localVarPath = `/api/open-data-conversion/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(openDataConversion, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @param {string} id A unique integer value identifying this open data food.
          * @param {OpenDataFood} [openDataFood] 
          * @param {*} [options] Override http request option.
@@ -8386,6 +9359,80 @@ export const ApiApiAxiosParamCreator = function (configuration?: Configuration) 
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = serializeDataIfNeeded(openDataFood, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} id A unique integer value identifying this open data property.
+         * @param {OpenDataProperty} [openDataProperty] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        partialUpdateOpenDataProperty: async (id: string, openDataProperty?: OpenDataProperty, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('partialUpdateOpenDataProperty', 'id', id)
+            const localVarPath = `/api/open-data-property/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(openDataProperty, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} id A unique integer value identifying this open data store.
+         * @param {OpenDataStore} [openDataStore] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        partialUpdateOpenDataStore: async (id: string, openDataStore?: OpenDataStore, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('partialUpdateOpenDataStore', 'id', id)
+            const localVarPath = `/api/open-data-store/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(openDataStore, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -9696,6 +10743,72 @@ export const ApiApiAxiosParamCreator = function (configuration?: Configuration) 
         },
         /**
          * 
+         * @param {string} id A unique integer value identifying this open data category.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        retrieveOpenDataCategory: async (id: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('retrieveOpenDataCategory', 'id', id)
+            const localVarPath = `/api/open-data-category/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} id A unique integer value identifying this open data conversion.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        retrieveOpenDataConversion: async (id: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('retrieveOpenDataConversion', 'id', id)
+            const localVarPath = `/api/open-data-conversion/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @param {string} id A unique integer value identifying this open data food.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -9704,6 +10817,72 @@ export const ApiApiAxiosParamCreator = function (configuration?: Configuration) 
             // verify required parameter 'id' is not null or undefined
             assertParamExists('retrieveOpenDataFood', 'id', id)
             const localVarPath = `/api/open-data-food/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} id A unique integer value identifying this open data property.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        retrieveOpenDataProperty: async (id: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('retrieveOpenDataProperty', 'id', id)
+            const localVarPath = `/api/open-data-property/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} id A unique integer value identifying this open data store.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        retrieveOpenDataStore: async (id: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('retrieveOpenDataStore', 'id', id)
+            const localVarPath = `/api/open-data-store/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -11076,6 +12255,80 @@ export const ApiApiAxiosParamCreator = function (configuration?: Configuration) 
         },
         /**
          * 
+         * @param {string} id A unique integer value identifying this open data category.
+         * @param {OpenDataCategory} [openDataCategory] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateOpenDataCategory: async (id: string, openDataCategory?: OpenDataCategory, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('updateOpenDataCategory', 'id', id)
+            const localVarPath = `/api/open-data-category/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(openDataCategory, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} id A unique integer value identifying this open data conversion.
+         * @param {OpenDataConversion} [openDataConversion] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateOpenDataConversion: async (id: string, openDataConversion?: OpenDataConversion, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('updateOpenDataConversion', 'id', id)
+            const localVarPath = `/api/open-data-conversion/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(openDataConversion, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @param {string} id A unique integer value identifying this open data food.
          * @param {OpenDataFood} [openDataFood] 
          * @param {*} [options] Override http request option.
@@ -11105,6 +12358,80 @@ export const ApiApiAxiosParamCreator = function (configuration?: Configuration) 
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = serializeDataIfNeeded(openDataFood, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} id A unique integer value identifying this open data property.
+         * @param {OpenDataProperty} [openDataProperty] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateOpenDataProperty: async (id: string, openDataProperty?: OpenDataProperty, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('updateOpenDataProperty', 'id', id)
+            const localVarPath = `/api/open-data-property/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(openDataProperty, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} id A unique integer value identifying this open data store.
+         * @param {OpenDataStore} [openDataStore] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateOpenDataStore: async (id: string, openDataStore?: OpenDataStore, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('updateOpenDataStore', 'id', id)
+            const localVarPath = `/api/open-data-store/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(openDataStore, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -11879,12 +13206,52 @@ export const ApiApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {OpenDataCategory} [openDataCategory] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async createOpenDataCategory(openDataCategory?: OpenDataCategory, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OpenDataCategory>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createOpenDataCategory(openDataCategory, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {OpenDataConversion} [openDataConversion] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async createOpenDataConversion(openDataConversion?: OpenDataConversion, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OpenDataConversion>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createOpenDataConversion(openDataConversion, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @param {OpenDataFood} [openDataFood] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         async createOpenDataFood(openDataFood?: OpenDataFood, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OpenDataFood>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.createOpenDataFood(openDataFood, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {OpenDataProperty} [openDataProperty] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async createOpenDataProperty(openDataProperty?: OpenDataProperty, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OpenDataProperty>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createOpenDataProperty(openDataProperty, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {OpenDataStore} [openDataStore] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async createOpenDataStore(openDataStore?: OpenDataStore, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OpenDataStore>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createOpenDataStore(openDataStore, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -12204,12 +13571,52 @@ export const ApiApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {string} id A unique integer value identifying this open data category.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async destroyOpenDataCategory(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.destroyOpenDataCategory(id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} id A unique integer value identifying this open data conversion.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async destroyOpenDataConversion(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.destroyOpenDataConversion(id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @param {string} id A unique integer value identifying this open data food.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         async destroyOpenDataFood(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.destroyOpenDataFood(id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} id A unique integer value identifying this open data property.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async destroyOpenDataProperty(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.destroyOpenDataProperty(id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} id A unique integer value identifying this open data store.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async destroyOpenDataStore(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.destroyOpenDataStore(id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -12552,8 +13959,44 @@ export const ApiApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
+        async listOpenDataCategorys(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<OpenDataCategory>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.listOpenDataCategorys(options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async listOpenDataConversions(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<OpenDataConversion>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.listOpenDataConversions(options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
         async listOpenDataFoods(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<OpenDataFood>>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.listOpenDataFoods(options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async listOpenDataPropertys(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<OpenDataProperty>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.listOpenDataPropertys(options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async listOpenDataStores(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<OpenDataStore>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.listOpenDataStores(options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -13005,6 +14448,28 @@ export const ApiApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {string} id A unique integer value identifying this open data category.
+         * @param {OpenDataCategory} [openDataCategory] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async partialUpdateOpenDataCategory(id: string, openDataCategory?: OpenDataCategory, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OpenDataCategory>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.partialUpdateOpenDataCategory(id, openDataCategory, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} id A unique integer value identifying this open data conversion.
+         * @param {OpenDataConversion} [openDataConversion] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async partialUpdateOpenDataConversion(id: string, openDataConversion?: OpenDataConversion, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OpenDataConversion>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.partialUpdateOpenDataConversion(id, openDataConversion, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @param {string} id A unique integer value identifying this open data food.
          * @param {OpenDataFood} [openDataFood] 
          * @param {*} [options] Override http request option.
@@ -13012,6 +14477,28 @@ export const ApiApiFp = function(configuration?: Configuration) {
          */
         async partialUpdateOpenDataFood(id: string, openDataFood?: OpenDataFood, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OpenDataFood>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.partialUpdateOpenDataFood(id, openDataFood, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} id A unique integer value identifying this open data property.
+         * @param {OpenDataProperty} [openDataProperty] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async partialUpdateOpenDataProperty(id: string, openDataProperty?: OpenDataProperty, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OpenDataProperty>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.partialUpdateOpenDataProperty(id, openDataProperty, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} id A unique integer value identifying this open data store.
+         * @param {OpenDataStore} [openDataStore] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async partialUpdateOpenDataStore(id: string, openDataStore?: OpenDataStore, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OpenDataStore>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.partialUpdateOpenDataStore(id, openDataStore, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -13401,12 +14888,52 @@ export const ApiApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {string} id A unique integer value identifying this open data category.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async retrieveOpenDataCategory(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OpenDataCategory>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.retrieveOpenDataCategory(id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} id A unique integer value identifying this open data conversion.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async retrieveOpenDataConversion(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OpenDataConversion>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.retrieveOpenDataConversion(id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @param {string} id A unique integer value identifying this open data food.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         async retrieveOpenDataFood(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OpenDataFood>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.retrieveOpenDataFood(id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} id A unique integer value identifying this open data property.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async retrieveOpenDataProperty(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OpenDataProperty>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.retrieveOpenDataProperty(id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} id A unique integer value identifying this open data store.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async retrieveOpenDataStore(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OpenDataStore>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.retrieveOpenDataStore(id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -13816,6 +15343,28 @@ export const ApiApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {string} id A unique integer value identifying this open data category.
+         * @param {OpenDataCategory} [openDataCategory] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async updateOpenDataCategory(id: string, openDataCategory?: OpenDataCategory, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OpenDataCategory>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateOpenDataCategory(id, openDataCategory, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} id A unique integer value identifying this open data conversion.
+         * @param {OpenDataConversion} [openDataConversion] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async updateOpenDataConversion(id: string, openDataConversion?: OpenDataConversion, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OpenDataConversion>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateOpenDataConversion(id, openDataConversion, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @param {string} id A unique integer value identifying this open data food.
          * @param {OpenDataFood} [openDataFood] 
          * @param {*} [options] Override http request option.
@@ -13823,6 +15372,28 @@ export const ApiApiFp = function(configuration?: Configuration) {
          */
         async updateOpenDataFood(id: string, openDataFood?: OpenDataFood, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OpenDataFood>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.updateOpenDataFood(id, openDataFood, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} id A unique integer value identifying this open data property.
+         * @param {OpenDataProperty} [openDataProperty] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async updateOpenDataProperty(id: string, openDataProperty?: OpenDataProperty, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OpenDataProperty>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateOpenDataProperty(id, openDataProperty, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} id A unique integer value identifying this open data store.
+         * @param {OpenDataStore} [openDataStore] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async updateOpenDataStore(id: string, openDataStore?: OpenDataStore, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OpenDataStore>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateOpenDataStore(id, openDataStore, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -14135,12 +15706,48 @@ export const ApiApiFactory = function (configuration?: Configuration, basePath?:
         },
         /**
          * 
+         * @param {OpenDataCategory} [openDataCategory] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createOpenDataCategory(openDataCategory?: OpenDataCategory, options?: any): AxiosPromise<OpenDataCategory> {
+            return localVarFp.createOpenDataCategory(openDataCategory, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {OpenDataConversion} [openDataConversion] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createOpenDataConversion(openDataConversion?: OpenDataConversion, options?: any): AxiosPromise<OpenDataConversion> {
+            return localVarFp.createOpenDataConversion(openDataConversion, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @param {OpenDataFood} [openDataFood] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         createOpenDataFood(openDataFood?: OpenDataFood, options?: any): AxiosPromise<OpenDataFood> {
             return localVarFp.createOpenDataFood(openDataFood, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {OpenDataProperty} [openDataProperty] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createOpenDataProperty(openDataProperty?: OpenDataProperty, options?: any): AxiosPromise<OpenDataProperty> {
+            return localVarFp.createOpenDataProperty(openDataProperty, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {OpenDataStore} [openDataStore] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createOpenDataStore(openDataStore?: OpenDataStore, options?: any): AxiosPromise<OpenDataStore> {
+            return localVarFp.createOpenDataStore(openDataStore, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -14428,12 +16035,48 @@ export const ApiApiFactory = function (configuration?: Configuration, basePath?:
         },
         /**
          * 
+         * @param {string} id A unique integer value identifying this open data category.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        destroyOpenDataCategory(id: string, options?: any): AxiosPromise<void> {
+            return localVarFp.destroyOpenDataCategory(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} id A unique integer value identifying this open data conversion.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        destroyOpenDataConversion(id: string, options?: any): AxiosPromise<void> {
+            return localVarFp.destroyOpenDataConversion(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @param {string} id A unique integer value identifying this open data food.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         destroyOpenDataFood(id: string, options?: any): AxiosPromise<void> {
             return localVarFp.destroyOpenDataFood(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} id A unique integer value identifying this open data property.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        destroyOpenDataProperty(id: string, options?: any): AxiosPromise<void> {
+            return localVarFp.destroyOpenDataProperty(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} id A unique integer value identifying this open data store.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        destroyOpenDataStore(id: string, options?: any): AxiosPromise<void> {
+            return localVarFp.destroyOpenDataStore(id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -14742,8 +16385,40 @@ export const ApiApiFactory = function (configuration?: Configuration, basePath?:
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
+        listOpenDataCategorys(options?: any): AxiosPromise<Array<OpenDataCategory>> {
+            return localVarFp.listOpenDataCategorys(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listOpenDataConversions(options?: any): AxiosPromise<Array<OpenDataConversion>> {
+            return localVarFp.listOpenDataConversions(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
         listOpenDataFoods(options?: any): AxiosPromise<Array<OpenDataFood>> {
             return localVarFp.listOpenDataFoods(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listOpenDataPropertys(options?: any): AxiosPromise<Array<OpenDataProperty>> {
+            return localVarFp.listOpenDataPropertys(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listOpenDataStores(options?: any): AxiosPromise<Array<OpenDataStore>> {
+            return localVarFp.listOpenDataStores(options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -15154,6 +16829,26 @@ export const ApiApiFactory = function (configuration?: Configuration, basePath?:
         },
         /**
          * 
+         * @param {string} id A unique integer value identifying this open data category.
+         * @param {OpenDataCategory} [openDataCategory] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        partialUpdateOpenDataCategory(id: string, openDataCategory?: OpenDataCategory, options?: any): AxiosPromise<OpenDataCategory> {
+            return localVarFp.partialUpdateOpenDataCategory(id, openDataCategory, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} id A unique integer value identifying this open data conversion.
+         * @param {OpenDataConversion} [openDataConversion] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        partialUpdateOpenDataConversion(id: string, openDataConversion?: OpenDataConversion, options?: any): AxiosPromise<OpenDataConversion> {
+            return localVarFp.partialUpdateOpenDataConversion(id, openDataConversion, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @param {string} id A unique integer value identifying this open data food.
          * @param {OpenDataFood} [openDataFood] 
          * @param {*} [options] Override http request option.
@@ -15161,6 +16856,26 @@ export const ApiApiFactory = function (configuration?: Configuration, basePath?:
          */
         partialUpdateOpenDataFood(id: string, openDataFood?: OpenDataFood, options?: any): AxiosPromise<OpenDataFood> {
             return localVarFp.partialUpdateOpenDataFood(id, openDataFood, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} id A unique integer value identifying this open data property.
+         * @param {OpenDataProperty} [openDataProperty] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        partialUpdateOpenDataProperty(id: string, openDataProperty?: OpenDataProperty, options?: any): AxiosPromise<OpenDataProperty> {
+            return localVarFp.partialUpdateOpenDataProperty(id, openDataProperty, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} id A unique integer value identifying this open data store.
+         * @param {OpenDataStore} [openDataStore] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        partialUpdateOpenDataStore(id: string, openDataStore?: OpenDataStore, options?: any): AxiosPromise<OpenDataStore> {
+            return localVarFp.partialUpdateOpenDataStore(id, openDataStore, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -15513,12 +17228,48 @@ export const ApiApiFactory = function (configuration?: Configuration, basePath?:
         },
         /**
          * 
+         * @param {string} id A unique integer value identifying this open data category.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        retrieveOpenDataCategory(id: string, options?: any): AxiosPromise<OpenDataCategory> {
+            return localVarFp.retrieveOpenDataCategory(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} id A unique integer value identifying this open data conversion.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        retrieveOpenDataConversion(id: string, options?: any): AxiosPromise<OpenDataConversion> {
+            return localVarFp.retrieveOpenDataConversion(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @param {string} id A unique integer value identifying this open data food.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         retrieveOpenDataFood(id: string, options?: any): AxiosPromise<OpenDataFood> {
             return localVarFp.retrieveOpenDataFood(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} id A unique integer value identifying this open data property.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        retrieveOpenDataProperty(id: string, options?: any): AxiosPromise<OpenDataProperty> {
+            return localVarFp.retrieveOpenDataProperty(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} id A unique integer value identifying this open data store.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        retrieveOpenDataStore(id: string, options?: any): AxiosPromise<OpenDataStore> {
+            return localVarFp.retrieveOpenDataStore(id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -15888,6 +17639,26 @@ export const ApiApiFactory = function (configuration?: Configuration, basePath?:
         },
         /**
          * 
+         * @param {string} id A unique integer value identifying this open data category.
+         * @param {OpenDataCategory} [openDataCategory] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateOpenDataCategory(id: string, openDataCategory?: OpenDataCategory, options?: any): AxiosPromise<OpenDataCategory> {
+            return localVarFp.updateOpenDataCategory(id, openDataCategory, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} id A unique integer value identifying this open data conversion.
+         * @param {OpenDataConversion} [openDataConversion] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateOpenDataConversion(id: string, openDataConversion?: OpenDataConversion, options?: any): AxiosPromise<OpenDataConversion> {
+            return localVarFp.updateOpenDataConversion(id, openDataConversion, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @param {string} id A unique integer value identifying this open data food.
          * @param {OpenDataFood} [openDataFood] 
          * @param {*} [options] Override http request option.
@@ -15895,6 +17666,26 @@ export const ApiApiFactory = function (configuration?: Configuration, basePath?:
          */
         updateOpenDataFood(id: string, openDataFood?: OpenDataFood, options?: any): AxiosPromise<OpenDataFood> {
             return localVarFp.updateOpenDataFood(id, openDataFood, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} id A unique integer value identifying this open data property.
+         * @param {OpenDataProperty} [openDataProperty] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateOpenDataProperty(id: string, openDataProperty?: OpenDataProperty, options?: any): AxiosPromise<OpenDataProperty> {
+            return localVarFp.updateOpenDataProperty(id, openDataProperty, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} id A unique integer value identifying this open data store.
+         * @param {OpenDataStore} [openDataStore] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateOpenDataStore(id: string, openDataStore?: OpenDataStore, options?: any): AxiosPromise<OpenDataStore> {
+            return localVarFp.updateOpenDataStore(id, openDataStore, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -16216,6 +18007,28 @@ export class ApiApi extends BaseAPI {
 
     /**
      * 
+     * @param {OpenDataCategory} [openDataCategory] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ApiApi
+     */
+    public createOpenDataCategory(openDataCategory?: OpenDataCategory, options?: AxiosRequestConfig) {
+        return ApiApiFp(this.configuration).createOpenDataCategory(openDataCategory, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {OpenDataConversion} [openDataConversion] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ApiApi
+     */
+    public createOpenDataConversion(openDataConversion?: OpenDataConversion, options?: AxiosRequestConfig) {
+        return ApiApiFp(this.configuration).createOpenDataConversion(openDataConversion, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
      * @param {OpenDataFood} [openDataFood] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -16223,6 +18036,28 @@ export class ApiApi extends BaseAPI {
      */
     public createOpenDataFood(openDataFood?: OpenDataFood, options?: AxiosRequestConfig) {
         return ApiApiFp(this.configuration).createOpenDataFood(openDataFood, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {OpenDataProperty} [openDataProperty] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ApiApi
+     */
+    public createOpenDataProperty(openDataProperty?: OpenDataProperty, options?: AxiosRequestConfig) {
+        return ApiApiFp(this.configuration).createOpenDataProperty(openDataProperty, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {OpenDataStore} [openDataStore] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ApiApi
+     */
+    public createOpenDataStore(openDataStore?: OpenDataStore, options?: AxiosRequestConfig) {
+        return ApiApiFp(this.configuration).createOpenDataStore(openDataStore, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -16573,6 +18408,28 @@ export class ApiApi extends BaseAPI {
 
     /**
      * 
+     * @param {string} id A unique integer value identifying this open data category.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ApiApi
+     */
+    public destroyOpenDataCategory(id: string, options?: AxiosRequestConfig) {
+        return ApiApiFp(this.configuration).destroyOpenDataCategory(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} id A unique integer value identifying this open data conversion.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ApiApi
+     */
+    public destroyOpenDataConversion(id: string, options?: AxiosRequestConfig) {
+        return ApiApiFp(this.configuration).destroyOpenDataConversion(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
      * @param {string} id A unique integer value identifying this open data food.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -16580,6 +18437,28 @@ export class ApiApi extends BaseAPI {
      */
     public destroyOpenDataFood(id: string, options?: AxiosRequestConfig) {
         return ApiApiFp(this.configuration).destroyOpenDataFood(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} id A unique integer value identifying this open data property.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ApiApi
+     */
+    public destroyOpenDataProperty(id: string, options?: AxiosRequestConfig) {
+        return ApiApiFp(this.configuration).destroyOpenDataProperty(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} id A unique integer value identifying this open data store.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ApiApi
+     */
+    public destroyOpenDataStore(id: string, options?: AxiosRequestConfig) {
+        return ApiApiFp(this.configuration).destroyOpenDataStore(id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -16956,8 +18835,48 @@ export class ApiApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ApiApi
      */
+    public listOpenDataCategorys(options?: AxiosRequestConfig) {
+        return ApiApiFp(this.configuration).listOpenDataCategorys(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ApiApi
+     */
+    public listOpenDataConversions(options?: AxiosRequestConfig) {
+        return ApiApiFp(this.configuration).listOpenDataConversions(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ApiApi
+     */
     public listOpenDataFoods(options?: AxiosRequestConfig) {
         return ApiApiFp(this.configuration).listOpenDataFoods(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ApiApi
+     */
+    public listOpenDataPropertys(options?: AxiosRequestConfig) {
+        return ApiApiFp(this.configuration).listOpenDataPropertys(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ApiApi
+     */
+    public listOpenDataStores(options?: AxiosRequestConfig) {
+        return ApiApiFp(this.configuration).listOpenDataStores(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -17449,6 +19368,30 @@ export class ApiApi extends BaseAPI {
 
     /**
      * 
+     * @param {string} id A unique integer value identifying this open data category.
+     * @param {OpenDataCategory} [openDataCategory] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ApiApi
+     */
+    public partialUpdateOpenDataCategory(id: string, openDataCategory?: OpenDataCategory, options?: AxiosRequestConfig) {
+        return ApiApiFp(this.configuration).partialUpdateOpenDataCategory(id, openDataCategory, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} id A unique integer value identifying this open data conversion.
+     * @param {OpenDataConversion} [openDataConversion] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ApiApi
+     */
+    public partialUpdateOpenDataConversion(id: string, openDataConversion?: OpenDataConversion, options?: AxiosRequestConfig) {
+        return ApiApiFp(this.configuration).partialUpdateOpenDataConversion(id, openDataConversion, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
      * @param {string} id A unique integer value identifying this open data food.
      * @param {OpenDataFood} [openDataFood] 
      * @param {*} [options] Override http request option.
@@ -17457,6 +19400,30 @@ export class ApiApi extends BaseAPI {
      */
     public partialUpdateOpenDataFood(id: string, openDataFood?: OpenDataFood, options?: AxiosRequestConfig) {
         return ApiApiFp(this.configuration).partialUpdateOpenDataFood(id, openDataFood, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} id A unique integer value identifying this open data property.
+     * @param {OpenDataProperty} [openDataProperty] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ApiApi
+     */
+    public partialUpdateOpenDataProperty(id: string, openDataProperty?: OpenDataProperty, options?: AxiosRequestConfig) {
+        return ApiApiFp(this.configuration).partialUpdateOpenDataProperty(id, openDataProperty, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} id A unique integer value identifying this open data store.
+     * @param {OpenDataStore} [openDataStore] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ApiApi
+     */
+    public partialUpdateOpenDataStore(id: string, openDataStore?: OpenDataStore, options?: AxiosRequestConfig) {
+        return ApiApiFp(this.configuration).partialUpdateOpenDataStore(id, openDataStore, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -17882,6 +19849,28 @@ export class ApiApi extends BaseAPI {
 
     /**
      * 
+     * @param {string} id A unique integer value identifying this open data category.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ApiApi
+     */
+    public retrieveOpenDataCategory(id: string, options?: AxiosRequestConfig) {
+        return ApiApiFp(this.configuration).retrieveOpenDataCategory(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} id A unique integer value identifying this open data conversion.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ApiApi
+     */
+    public retrieveOpenDataConversion(id: string, options?: AxiosRequestConfig) {
+        return ApiApiFp(this.configuration).retrieveOpenDataConversion(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
      * @param {string} id A unique integer value identifying this open data food.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -17889,6 +19878,28 @@ export class ApiApi extends BaseAPI {
      */
     public retrieveOpenDataFood(id: string, options?: AxiosRequestConfig) {
         return ApiApiFp(this.configuration).retrieveOpenDataFood(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} id A unique integer value identifying this open data property.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ApiApi
+     */
+    public retrieveOpenDataProperty(id: string, options?: AxiosRequestConfig) {
+        return ApiApiFp(this.configuration).retrieveOpenDataProperty(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} id A unique integer value identifying this open data store.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ApiApi
+     */
+    public retrieveOpenDataStore(id: string, options?: AxiosRequestConfig) {
+        return ApiApiFp(this.configuration).retrieveOpenDataStore(id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -18337,6 +20348,30 @@ export class ApiApi extends BaseAPI {
 
     /**
      * 
+     * @param {string} id A unique integer value identifying this open data category.
+     * @param {OpenDataCategory} [openDataCategory] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ApiApi
+     */
+    public updateOpenDataCategory(id: string, openDataCategory?: OpenDataCategory, options?: AxiosRequestConfig) {
+        return ApiApiFp(this.configuration).updateOpenDataCategory(id, openDataCategory, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} id A unique integer value identifying this open data conversion.
+     * @param {OpenDataConversion} [openDataConversion] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ApiApi
+     */
+    public updateOpenDataConversion(id: string, openDataConversion?: OpenDataConversion, options?: AxiosRequestConfig) {
+        return ApiApiFp(this.configuration).updateOpenDataConversion(id, openDataConversion, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
      * @param {string} id A unique integer value identifying this open data food.
      * @param {OpenDataFood} [openDataFood] 
      * @param {*} [options] Override http request option.
@@ -18345,6 +20380,30 @@ export class ApiApi extends BaseAPI {
      */
     public updateOpenDataFood(id: string, openDataFood?: OpenDataFood, options?: AxiosRequestConfig) {
         return ApiApiFp(this.configuration).updateOpenDataFood(id, openDataFood, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} id A unique integer value identifying this open data property.
+     * @param {OpenDataProperty} [openDataProperty] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ApiApi
+     */
+    public updateOpenDataProperty(id: string, openDataProperty?: OpenDataProperty, options?: AxiosRequestConfig) {
+        return ApiApiFp(this.configuration).updateOpenDataProperty(id, openDataProperty, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} id A unique integer value identifying this open data store.
+     * @param {OpenDataStore} [openDataStore] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ApiApi
+     */
+    public updateOpenDataStore(id: string, openDataStore?: OpenDataStore, options?: AxiosRequestConfig) {
+        return ApiApiFp(this.configuration).updateOpenDataStore(id, openDataStore, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

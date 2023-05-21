@@ -44,8 +44,8 @@ class OpenDataStore(OpenDataBaseModel):
 
 
 class OpenDataStoreCategory(models.Model):
-    store = models.ForeignKey(OpenDataStore, on_delete=models.PROTECT)
-    category = models.ForeignKey(OpenDataCategory, on_delete=models.PROTECT)
+    store = models.ForeignKey(OpenDataStore, on_delete=models.PROTECT, related_name='category_to_store')
+    category = models.ForeignKey(OpenDataCategory, on_delete=models.PROTECT, related_name='category_to_store')
     order = models.BigIntegerField(default=0, db_index=True, )
 
     class Meta:

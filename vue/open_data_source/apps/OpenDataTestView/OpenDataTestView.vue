@@ -2,24 +2,21 @@
 
     <div id="app">
 
-
         <ul class="nav nav-tabs mb-3">
-
-            <li class="nav-item"><a
-                class="nav-link"
-                @click="selected_model = OpenDataModels.OPEN_DATA_FOOD">Food</a></li>
-            <li class="nav-item"><a
-                class="nav-link"
-                @click="selected_model = OpenDataModels.OPEN_DATA_UNIT">Unit</a></li>
+            <li class="nav-item"><a class="nav-link" :class="{'active':selected_model === OpenDataModels.OPEN_DATA_FOOD}" @click="selected_model = OpenDataModels.OPEN_DATA_FOOD">Food</a></li>
+            <li class="nav-item"><a class="nav-link" :class="{'active':selected_model === OpenDataModels.OPEN_DATA_UNIT}" @click="selected_model = OpenDataModels.OPEN_DATA_UNIT">Unit</a></li>
+            <li class="nav-item"><a class="nav-link" :class="{'active':selected_model === OpenDataModels.OPEN_DATA_CATEGORY}" @click="selected_model = OpenDataModels.OPEN_DATA_CATEGORY">Category</a></li>
+            <li class="nav-item"><a class="nav-link" :class="{'active':selected_model === OpenDataModels.OPEN_DATA_STORE}" @click="selected_model = OpenDataModels.OPEN_DATA_STORE">Store</a></li>
+            <li class="nav-item"><a class="nav-link" :class="{'active':selected_model === OpenDataModels.OPEN_DATA_PROPERTY}" @click="selected_model = OpenDataModels.OPEN_DATA_PROPERTY">Property</a></li>
         </ul>
 
         <button @click="show_create_modal = !show_create_modal">Toggle</button>
 
-        <generic-modal-form :model="selected_model" :models="OpenDataModels" :action="Actions.CREATE" :show="show_create_modal"/>
+        <generic-modal-form :model="selected_model" :models="OpenDataModels" :action="Actions.CREATE" :show="show_create_modal" @finish-action="refresh += 1; show_create_modal = false"/>
 
 
         <h1>List</h1>
-        <open-data-list-component :model="selected_model"></open-data-list-component>
+        <open-data-list-component :model="selected_model" :refresh="refresh"></open-data-list-component>
     </div>
 </template>
 
@@ -53,6 +50,7 @@ export default {
         return {
             selected_model: OpenDataModels.OPEN_DATA_UNIT,
             show_create_modal: false,
+            refresh: 0,
         }
     },
     mounted() {
