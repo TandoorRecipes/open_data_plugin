@@ -5,30 +5,30 @@ from recipes.plugins.open_data_plugin.serializer import OpenDataUnitSerializer, 
 
 
 class OpenDataUnitViewSet(viewsets.ModelViewSet):
-    queryset = OpenDataUnit.objects
+    queryset = OpenDataUnit.objects.all()
     serializer_class = OpenDataUnitSerializer
 
 
 class OpenDataCategoryViewSet(viewsets.ModelViewSet):
-    queryset = OpenDataCategory.objects
+    queryset = OpenDataCategory.objects.all()
     serializer_class = OpenDataCategorySerializer
 
 
 class OpenDataStoreViewSet(viewsets.ModelViewSet):
-    queryset = OpenDataStore.objects
+    queryset = OpenDataStore.objects.all()
     serializer_class = OpenDataStoreSerializer
 
 
 class OpenDataPropertyViewSet(viewsets.ModelViewSet):
-    queryset = OpenDataProperty.objects
+    queryset = OpenDataProperty.objects.all()
     serializer_class = OpenDataPropertySerializer
 
 
 class OpenDataFoodViewSet(viewsets.ModelViewSet):
-    queryset = OpenDataFood.objects
+    queryset = OpenDataFood.objects.all()
     serializer_class = OpenDataFoodSerializer
 
 
 class OpenDataConversionViewSet(viewsets.ModelViewSet):
-    queryset = OpenDataConversion.objects
+    queryset = OpenDataConversion.objects.all()
     serializer_class = OpenDataConversionSerializer

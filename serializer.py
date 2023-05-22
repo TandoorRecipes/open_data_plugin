@@ -1,44 +1,39 @@
 from django.db.models import Q
-from drf_writable_nested import WritableNestedModelSerializer
+from drf_writable_nested import WritableNestedModelSerializer, UniqueFieldsMixin
 from rest_framework import serializers
 
 from recipes.plugins.open_data_plugin.models import OpenDataUnit, OpenDataFood, OpenDataCategory, OpenDataStore, OpenDataProperty, OpenDataStoreCategory, OpenDataConversion, OpenDataFoodProperty
 
 
-class OpenDataUnitSerializer(serializers.ModelSerializer):
+class OpenDataUnitSerializer(UniqueFieldsMixin, serializers.ModelSerializer):
+
     def create(self, validated_data):
         validated_data['created_by'] = self.context['request'].user
-
-        slug = validated_data.pop('slug')
-        name = validated_data.pop('name')
-        obj, created = OpenDataUnit.objects.get_or_create(slug=slug, name=name, defaults=validated_data)
+        obj, created = OpenDataUnit.objects.get_or_create(slug=validated_data['slug'], name=validated_data['name'], defaults=validated_data)
         return obj
+
+    def update(self, instance, validated_data):
+        return super(OpenDataUnitSerializer, self).update(instance, validated_data)
 
     class Meta:
         model = OpenDataUnit
         fields = ('id', 'slug', 'name', 'plural_name', 'base_unit', 'type', 'comment')
+        read_only_fields = ('id',)
 
 
-class OpenDataCategorySerializer(serializers.ModelSerializer):
+class OpenDataCategorySerializer(UniqueFieldsMixin, serializers.ModelSerializer):
     def create(self, validated_data):
-        print('RRRRRRRUUUUNNNING')
         validated_data['created_by'] = self.context['request'].user
-
-        slug = validated_data.pop('slug')
-        name = validated_data.pop('name')
-        if obj := OpenDataCategory.objects.filter(Q(slug=slug) | Q(name=name)).first():
-            return obj
-
-        obj, created = OpenDataCategory.objects.get_or_create(slug=slug, name=name, defaults=validated_data)
+        obj, created = OpenDataCategory.objects.get_or_create(slug=validated_data['slug'], name=validated_data['name'], defaults=validated_data)
         return obj
 
     def update(self, instance, validated_data):
-        print('UPDATE')
         return super(OpenDataCategorySerializer, self).update(instance, validated_data)
 
     class Meta:
         model = OpenDataCategory
         fields = ('id', 'slug', 'name', 'comment',)
+        read_only_fields = ('id',)
 
 
 class OpenDataStoreCategorySerializer(WritableNestedModelSerializer):
@@ -96,12 +91,10 @@ class OpenDataFoodSerializer(WritableNestedModelSerializer):
     properties = OpenDataFoodPropertySerializer(allow_null=True, many=True)
 
     def create(self, validated_data):
-        print('FOOOOOOOOOOOOOOOOOOOOOD')
         validated_data['created_by'] = self.context['request'].user
         return super().create(validated_data)
 
     def update(self, instance, validated_data):
-        print('FOOOOOOOOOOOOOOOD UPDATE')
         return super().update(instance, validated_data)
 
     class Meta:
@@ -109,6 +102,7 @@ class OpenDataFoodSerializer(WritableNestedModelSerializer):
         fields = ('id', 'slug', 'name', 'plural_name', 'store_category',
                   'preferred_unit_metric', 'preferred_shopping_unit_metric', 'preferred_unit_imperial',
                   'preferred_shopping_unit_imperial', 'properties', 'fdc_id', 'comment',)
+        read_only_fields = ('id',)
 
 
 class OpenDataConversionSerializer(WritableNestedModelSerializer):

@@ -16,9 +16,15 @@ export class OpenDataModels extends Models {
         apiClient: new ApiApiFactory(),
         table_fields: ["slug", "name"],
         create: {
-            params: [["name", "plural_name", "comment", "slug",]],
+            params: [["slug", "name", "plural_name", "base_unit", "type", "comment",]],
             form: {
                 show_help: true,
+                slug: {
+                    form_field: true,
+                    type: "text",
+                    field: "slug",
+                    label: "Slug",
+                },
                 name: {
                     form_field: true,
                     type: "text",
@@ -33,6 +39,20 @@ export class OpenDataModels extends Models {
                     label: "Plural name",
                     placeholder: "",
                 },
+                base_unit: {
+                    form_field: true,
+                    type: "text",
+                    field: "base_unit",
+                    label: "Base Unit",
+                    placeholder: "",
+                },
+                type: {
+                    form_field: true,
+                    type: "text",
+                    field: "type",
+                    label: "Type",
+                    placeholder: "",
+                },
                 comment: {
                     form_field: true,
                     type: "text",
@@ -40,12 +60,7 @@ export class OpenDataModels extends Models {
                     label: "comment",
                     placeholder: "",
                 },
-                slug: {
-                    form_field: true,
-                    type: "text",
-                    field: "slug",
-                    label: "Slug",
-                },
+
             },
         },
         merge: true,
