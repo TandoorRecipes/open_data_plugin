@@ -5,7 +5,9 @@
             <template v-slot:modal-title>
                 <div class="row" v-if="food">
                     <div class="col-12">
-                        <h2>{{ food.name }} <small class="text-muted" v-if="food.plural_name">{{ food.plural_name }}</small>
+                        <h2>{{ food.name }} <small class="text-muted" v-if="food.plural_name">{{
+                                food.plural_name
+                            }}</small>
                         </h2>
                     </div>
                 </div>
@@ -14,6 +16,16 @@
             <div class="row">
                 <div class="col-12">
                     <b-form v-if="food">
+                        <b-form-group :label="$t('FDC ID')" description="">
+                            <b-input-group>
+                                <b-form-input v-model="food.fdc_id"></b-form-input>
+
+                                <b-input-group-append>
+                                    <b-button variant="primary" @click="loadFDCData">LOAD FDC</b-button>
+                                </b-input-group-append>
+                            </b-input-group>
+                        </b-form-group>
+
                         <b-form-group :label="$t('Slug')" description="">
                             <b-form-input v-model="food.slug"></b-form-input>
                         </b-form-group>
@@ -62,6 +74,18 @@
                                 :multiple="false"/>
                         </b-form-group>
 
+                        <b-form-group :label="$t('Properties Food Amount')" description="">
+                            <b-form-input rows="3" v-model="food.properties_food_amount"></b-form-input>
+                        </b-form-group>
+
+                        <b-form-group :label="$t('Properties Food Unit')" description="">
+                            <generic-multiselect
+                                @change="food.properties_food_unit = $event.val"
+                                :initial_single_selection="food.properties_food_unit"
+                                label="name" :model="OpenDataModels.OPEN_DATA_UNIT"
+                                :multiple="false"/>
+                        </b-form-group>
+
                         <b-form-group :label="$t('Properties')" description="">
                             <table class="table">
                                 <tr v-for="p in food.properties" v-bind:key="p.property">
@@ -81,9 +105,10 @@
                             <b-button @click="addProperty()">Add</b-button>
                         </b-form-group>
 
-                        <b-form-group :label="$t('FDC ID')" description="">
-                            <b-form-input v-model="food.fdc_id"></b-form-input>
+                        <b-form-group :label="$t('Properties Source')" description="">
+                            <b-form-textarea rows="3" v-model="food.properties_source"></b-form-textarea>
                         </b-form-group>
+
                         <b-form-group :label="$t('Comment')" description="">
                             <b-form-textarea rows="3" v-model="food.comment"></b-form-textarea>
                         </b-form-group>
@@ -95,6 +120,10 @@
             </div>
             <template v-slot:modal-footer>
                 <b-button variant="primary" @click="updateData">{{ $t('Save') }}</b-button>
+                <b-button variant="danger" @click="deleteData" v-if="food.id !== undefined">{{
+                        $t('Delete')
+                    }}
+                </b-button>
             </template>
         </b-modal>
     </div>
@@ -102,7 +131,7 @@
 
 <script>
 
-import {ApiMixin} from "@/utils/utils";
+import {ApiMixin, StandardToasts} from "@/utils/utils";
 import {ApiApiFactory} from "../utils/openapi/api";
 import GenericMultiselect from "../../../../../../vue/src/components/GenericMultiselect.vue";
 import {ModelMixin} from "../utils/models";
@@ -163,18 +192,41 @@ export default {
             let apiClient = new ApiApiFactory()
             if (this.object !== undefined) {
                 apiClient.updateOpenDataFood(this.food.id, this.food).then(r => {
-                    // TODO toasts
                     this.cancelAction()
+                    StandardToasts.makeStandardToast(this, StandardToasts.SUCCESS_UPDATE)
+                }).catch((err) => {
+                    StandardToasts.makeStandardToast(this, StandardToasts.FAIL_CREATE, err)
                 })
             } else {
                 apiClient.createOpenDataFood(this.food).then(r => {
-                    // TODO toasts
                     this.cancelAction()
+                    StandardToasts.makeStandardToast(this, StandardToasts.SUCCESS_CREATE)
+                }).catch((err) => {
+                    StandardToasts.makeStandardToast(this, StandardToasts.FAIL_CREATE, err)
                 })
             }
         },
+        deleteData: function () {
+            let apiClient = new ApiApiFactory()
+            apiClient.destroyOpenDataFood(this.food.id).then(r => {
+                this.cancelAction()
+                StandardToasts.makeStandardToast(this, StandardToasts.SUCCESS_DELETE)
+            }).catch((err) => {
+                StandardToasts.makeStandardToast(this, StandardToasts.FAIL_DELETE, err)
+            })
+        },
         addProperty: function () {
             this.food.properties.push({property: null, property_amount: 0})
+        },
+        loadFDCData: function () {
+            let apiClient = new ApiApiFactory()
+            apiClient.retrieveFDCViewSet(this.food.fdc_id).then(r => {
+                console.log(r.data)
+                this.food = r.data
+                StandardToasts.makeStandardToast(this, StandardToasts.SUCCESS_FETCH)
+            }).catch((err) => {
+                StandardToasts.makeStandardToast(this, StandardToasts.FAIL_FETCH, err)
+            })
         },
         cancelAction: function () {
             this.$emit("hidden", "")

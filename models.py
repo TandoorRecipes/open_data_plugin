@@ -55,14 +55,19 @@ class OpenDataStoreCategory(models.Model):
 class OpenDataProperty(OpenDataBaseModel):
     name = models.CharField(max_length=128, unique=True)
     unit = models.CharField(max_length=16, blank=True)
+    fdc_id = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
         return f'{self.name}'
 
 
-class OpenDataFoodProperty(OpenDataBaseModel):
+class OpenDataFoodProperty(models.Model):
     property = models.ForeignKey(OpenDataProperty, on_delete=models.PROTECT)
     property_amount = models.DecimalField(default=0, decimal_places=16, max_digits=32)
+
+    created_by = models.ForeignKey(User, on_delete=models.PROTECT)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f'{self.property} {self.property_amount}'
@@ -77,6 +82,11 @@ class OpenDataFood(OpenDataBaseModel):
     preferred_unit_imperial = models.ForeignKey(OpenDataUnit, on_delete=models.PROTECT, null=True, blank=True, default=None, related_name='preferred_unit_imperial')
     preferred_shopping_unit_imperial = models.ForeignKey(OpenDataUnit, on_delete=models.PROTECT, null=True, blank=True, default=None, related_name='preferred_shopping_unit_imperial')
     properties = models.ManyToManyField(OpenDataFoodProperty, blank=True)
+
+    properties_food_amount = models.IntegerField(default=100, blank=True)
+    properties_food_unit = models.ForeignKey(OpenDataUnit, on_delete=models.PROTECT, blank=True, null=True)
+    properties_source = models.TextField(blank=True)
+
     fdc_id = models.CharField(max_length=128, unique=True)
 
     # TODO add alias support

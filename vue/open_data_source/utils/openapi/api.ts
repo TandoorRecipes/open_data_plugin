@@ -1964,10 +1964,10 @@ export interface OpenDataConversion {
     'base_amount'?: string;
     /**
      * 
-     * @type {OpenDataConversionFoodStoreCategory}
+     * @type {OpenDataConversionFoodPreferredUnitMetric}
      * @memberof OpenDataConversion
      */
-    'base_unit': OpenDataConversionFoodStoreCategory;
+    'base_unit': OpenDataConversionFoodPreferredUnitMetric;
     /**
      * 
      * @type {string}
@@ -1976,10 +1976,10 @@ export interface OpenDataConversion {
     'converted_amount'?: string;
     /**
      * 
-     * @type {OpenDataConversionFoodStoreCategory}
+     * @type {OpenDataConversionFoodPreferredUnitMetric}
      * @memberof OpenDataConversion
      */
-    'converted_unit': OpenDataConversionFoodStoreCategory;
+    'converted_unit': OpenDataConversionFoodPreferredUnitMetric;
     /**
      * 
      * @type {string}
@@ -2025,40 +2025,40 @@ export interface OpenDataConversionFood {
     'plural_name': string;
     /**
      * 
-     * @type {OpenDataConversionFoodStoreCategory}
+     * @type {OpenDataStoreCategoryToStoreInnerCategory}
      * @memberof OpenDataConversionFood
      */
-    'store_category'?: OpenDataConversionFoodStoreCategory;
+    'store_category': OpenDataStoreCategoryToStoreInnerCategory;
     /**
      * 
-     * @type {OpenDataConversionFoodStoreCategory}
+     * @type {OpenDataConversionFoodPreferredUnitMetric}
      * @memberof OpenDataConversionFood
      */
-    'preferred_unit_metric'?: OpenDataConversionFoodStoreCategory;
+    'preferred_unit_metric': OpenDataConversionFoodPreferredUnitMetric;
     /**
      * 
-     * @type {OpenDataConversionFoodStoreCategory}
+     * @type {OpenDataConversionFoodPreferredUnitMetric}
      * @memberof OpenDataConversionFood
      */
-    'preferred_shopping_unit_metric'?: OpenDataConversionFoodStoreCategory;
+    'preferred_shopping_unit_metric': OpenDataConversionFoodPreferredUnitMetric;
     /**
      * 
-     * @type {OpenDataConversionFoodStoreCategory}
+     * @type {OpenDataConversionFoodPreferredUnitMetric}
      * @memberof OpenDataConversionFood
      */
-    'preferred_unit_imperial'?: OpenDataConversionFoodStoreCategory;
+    'preferred_unit_imperial': OpenDataConversionFoodPreferredUnitMetric;
     /**
      * 
-     * @type {OpenDataConversionFoodStoreCategory}
+     * @type {OpenDataConversionFoodPreferredUnitMetric}
      * @memberof OpenDataConversionFood
      */
-    'preferred_shopping_unit_imperial'?: OpenDataConversionFoodStoreCategory;
+    'preferred_shopping_unit_imperial': OpenDataConversionFoodPreferredUnitMetric;
     /**
      * 
      * @type {Array<OpenDataConversionFoodPropertiesInner>}
      * @memberof OpenDataConversionFood
      */
-    'properties'?: Array<OpenDataConversionFoodPropertiesInner>;
+    'properties': Array<OpenDataConversionFoodPropertiesInner> | null;
     /**
      * 
      * @type {string}
@@ -2075,6 +2075,85 @@ export interface OpenDataConversionFood {
 /**
  * 
  * @export
+ * @interface OpenDataConversionFoodPreferredUnitMetric
+ */
+export interface OpenDataConversionFoodPreferredUnitMetric {
+    /**
+     * 
+     * @type {number}
+     * @memberof OpenDataConversionFoodPreferredUnitMetric
+     */
+    'id'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof OpenDataConversionFoodPreferredUnitMetric
+     */
+    'slug': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OpenDataConversionFoodPreferredUnitMetric
+     */
+    'name': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OpenDataConversionFoodPreferredUnitMetric
+     */
+    'plural_name'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OpenDataConversionFoodPreferredUnitMetric
+     */
+    'base_unit'?: OpenDataConversionFoodPreferredUnitMetricBaseUnitEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof OpenDataConversionFoodPreferredUnitMetric
+     */
+    'type': OpenDataConversionFoodPreferredUnitMetricTypeEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof OpenDataConversionFoodPreferredUnitMetric
+     */
+    'comment'?: string;
+}
+
+export const OpenDataConversionFoodPreferredUnitMetricBaseUnitEnum = {
+    G: 'G',
+    Kg: 'KG',
+    Ml: 'ML',
+    L: 'L',
+    Ounce: 'OUNCE',
+    Pound: 'POUND',
+    FluidOunce: 'FLUID_OUNCE',
+    Tsp: 'TSP',
+    Tbsp: 'TBSP',
+    Cup: 'CUP',
+    Pint: 'PINT',
+    Quart: 'QUART',
+    Gallon: 'GALLON',
+    ImperialFluidOunce: 'IMPERIAL_FLUID_OUNCE',
+    ImperialPint: 'IMPERIAL_PINT',
+    ImperialQuart: 'IMPERIAL_QUART',
+    ImperialGallon: 'IMPERIAL_GALLON'
+} as const;
+
+export type OpenDataConversionFoodPreferredUnitMetricBaseUnitEnum = typeof OpenDataConversionFoodPreferredUnitMetricBaseUnitEnum[keyof typeof OpenDataConversionFoodPreferredUnitMetricBaseUnitEnum];
+export const OpenDataConversionFoodPreferredUnitMetricTypeEnum = {
+    Weight: 'WEIGHT',
+    Volume: 'VOLUME',
+    Other: 'OTHER'
+} as const;
+
+export type OpenDataConversionFoodPreferredUnitMetricTypeEnum = typeof OpenDataConversionFoodPreferredUnitMetricTypeEnum[keyof typeof OpenDataConversionFoodPreferredUnitMetricTypeEnum];
+
+/**
+ * 
+ * @export
  * @interface OpenDataConversionFoodPropertiesInner
  */
 export interface OpenDataConversionFoodPropertiesInner {
@@ -2084,12 +2163,6 @@ export interface OpenDataConversionFoodPropertiesInner {
      * @memberof OpenDataConversionFoodPropertiesInner
      */
     'id'?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof OpenDataConversionFoodPropertiesInner
-     */
-    'slug': string;
     /**
      * 
      * @type {OpenDataConversionFoodPropertiesInnerProperty}
@@ -2102,12 +2175,6 @@ export interface OpenDataConversionFoodPropertiesInner {
      * @memberof OpenDataConversionFoodPropertiesInner
      */
     'property_amount'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof OpenDataConversionFoodPropertiesInner
-     */
-    'comment'?: string;
 }
 /**
  * 
@@ -2149,85 +2216,6 @@ export interface OpenDataConversionFoodPropertiesInnerProperty {
 /**
  * 
  * @export
- * @interface OpenDataConversionFoodStoreCategory
- */
-export interface OpenDataConversionFoodStoreCategory {
-    /**
-     * 
-     * @type {number}
-     * @memberof OpenDataConversionFoodStoreCategory
-     */
-    'id'?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof OpenDataConversionFoodStoreCategory
-     */
-    'slug': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof OpenDataConversionFoodStoreCategory
-     */
-    'name': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof OpenDataConversionFoodStoreCategory
-     */
-    'plural_name'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof OpenDataConversionFoodStoreCategory
-     */
-    'base_unit'?: OpenDataConversionFoodStoreCategoryBaseUnitEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof OpenDataConversionFoodStoreCategory
-     */
-    'type': OpenDataConversionFoodStoreCategoryTypeEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof OpenDataConversionFoodStoreCategory
-     */
-    'comment'?: string;
-}
-
-export const OpenDataConversionFoodStoreCategoryBaseUnitEnum = {
-    G: 'G',
-    Kg: 'KG',
-    Ml: 'ML',
-    L: 'L',
-    Ounce: 'OUNCE',
-    Pound: 'POUND',
-    FluidOunce: 'FLUID_OUNCE',
-    Tsp: 'TSP',
-    Tbsp: 'TBSP',
-    Cup: 'CUP',
-    Pint: 'PINT',
-    Quart: 'QUART',
-    Gallon: 'GALLON',
-    ImperialFluidOunce: 'IMPERIAL_FLUID_OUNCE',
-    ImperialPint: 'IMPERIAL_PINT',
-    ImperialQuart: 'IMPERIAL_QUART',
-    ImperialGallon: 'IMPERIAL_GALLON'
-} as const;
-
-export type OpenDataConversionFoodStoreCategoryBaseUnitEnum = typeof OpenDataConversionFoodStoreCategoryBaseUnitEnum[keyof typeof OpenDataConversionFoodStoreCategoryBaseUnitEnum];
-export const OpenDataConversionFoodStoreCategoryTypeEnum = {
-    Weight: 'WEIGHT',
-    Volume: 'VOLUME',
-    Other: 'OTHER'
-} as const;
-
-export type OpenDataConversionFoodStoreCategoryTypeEnum = typeof OpenDataConversionFoodStoreCategoryTypeEnum[keyof typeof OpenDataConversionFoodStoreCategoryTypeEnum];
-
-/**
- * 
- * @export
  * @interface OpenDataFood
  */
 export interface OpenDataFood {
@@ -2257,40 +2245,40 @@ export interface OpenDataFood {
     'plural_name': string;
     /**
      * 
-     * @type {OpenDataConversionFoodStoreCategory}
+     * @type {OpenDataStoreCategoryToStoreInnerCategory}
      * @memberof OpenDataFood
      */
-    'store_category'?: OpenDataConversionFoodStoreCategory;
+    'store_category': OpenDataStoreCategoryToStoreInnerCategory;
     /**
      * 
-     * @type {OpenDataConversionFoodStoreCategory}
+     * @type {OpenDataConversionFoodPreferredUnitMetric}
      * @memberof OpenDataFood
      */
-    'preferred_unit_metric'?: OpenDataConversionFoodStoreCategory;
+    'preferred_unit_metric': OpenDataConversionFoodPreferredUnitMetric;
     /**
      * 
-     * @type {OpenDataConversionFoodStoreCategory}
+     * @type {OpenDataConversionFoodPreferredUnitMetric}
      * @memberof OpenDataFood
      */
-    'preferred_shopping_unit_metric'?: OpenDataConversionFoodStoreCategory;
+    'preferred_shopping_unit_metric': OpenDataConversionFoodPreferredUnitMetric;
     /**
      * 
-     * @type {OpenDataConversionFoodStoreCategory}
+     * @type {OpenDataConversionFoodPreferredUnitMetric}
      * @memberof OpenDataFood
      */
-    'preferred_unit_imperial'?: OpenDataConversionFoodStoreCategory;
+    'preferred_unit_imperial': OpenDataConversionFoodPreferredUnitMetric;
     /**
      * 
-     * @type {OpenDataConversionFoodStoreCategory}
+     * @type {OpenDataConversionFoodPreferredUnitMetric}
      * @memberof OpenDataFood
      */
-    'preferred_shopping_unit_imperial'?: OpenDataConversionFoodStoreCategory;
+    'preferred_shopping_unit_imperial': OpenDataConversionFoodPreferredUnitMetric;
     /**
      * 
      * @type {Array<OpenDataConversionFoodPropertiesInner>}
      * @memberof OpenDataFood
      */
-    'properties'?: Array<OpenDataConversionFoodPropertiesInner>;
+    'properties': Array<OpenDataConversionFoodPropertiesInner> | null;
     /**
      * 
      * @type {string}
@@ -10446,6 +10434,39 @@ export const ApiApiAxiosParamCreator = function (configuration?: Configuration) 
         },
         /**
          * 
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        retrieveFDCViewSet: async (id: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('retrieveFDCViewSet', 'id', id)
+            const localVarPath = `/api/open-data-FDC/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @param {string} id A unique integer value identifying this food.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -14798,6 +14819,16 @@ export const ApiApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async retrieveFDCViewSet(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.retrieveFDCViewSet(id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @param {string} id A unique integer value identifying this food.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -17144,6 +17175,15 @@ export const ApiApiFactory = function (configuration?: Configuration, basePath?:
          */
         retrieveExportLog(id: string, options?: any): AxiosPromise<ExportLog> {
             return localVarFp.retrieveExportLog(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        retrieveFDCViewSet(id: string, options?: any): AxiosPromise<any> {
+            return localVarFp.retrieveFDCViewSet(id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -19746,6 +19786,17 @@ export class ApiApi extends BaseAPI {
      */
     public retrieveExportLog(id: string, options?: AxiosRequestConfig) {
         return ApiApiFp(this.configuration).retrieveExportLog(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ApiApi
+     */
+    public retrieveFDCViewSet(id: string, options?: AxiosRequestConfig) {
+        return ApiApiFp(this.configuration).retrieveFDCViewSet(id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

@@ -60,10 +60,11 @@ class OpenDataStoreSerializer(WritableNestedModelSerializer):
         fields = ('id', 'slug', 'name', 'category_to_store', 'comment',)
 
 
-class OpenDataPropertySerializer(serializers.ModelSerializer):
+class OpenDataPropertySerializer(UniqueFieldsMixin, serializers.ModelSerializer):
     def create(self, validated_data):
         validated_data['created_by'] = self.context['request'].user
-        return super().create(validated_data)
+        obj, created = OpenDataProperty.objects.get_or_create(slug=validated_data['slug'], name=validated_data['name'], defaults=validated_data)
+        return obj
 
     class Meta:
         model = OpenDataProperty
@@ -79,7 +80,8 @@ class OpenDataFoodPropertySerializer(WritableNestedModelSerializer):
 
     class Meta:
         model = OpenDataFoodProperty
-        fields = ('id', 'slug', 'property', 'property_amount', 'comment',)
+        fields = ('id', 'property', 'property_amount',)
+        read_only_fields = ('id',)
 
 
 class OpenDataFoodSerializer(WritableNestedModelSerializer):
@@ -89,6 +91,7 @@ class OpenDataFoodSerializer(WritableNestedModelSerializer):
     preferred_unit_imperial = OpenDataUnitSerializer()
     preferred_shopping_unit_imperial = OpenDataUnitSerializer()
     properties = OpenDataFoodPropertySerializer(allow_null=True, many=True)
+    properties_food_unit = OpenDataUnitSerializer()
 
     def create(self, validated_data):
         validated_data['created_by'] = self.context['request'].user
@@ -101,7 +104,7 @@ class OpenDataFoodSerializer(WritableNestedModelSerializer):
         model = OpenDataFood
         fields = ('id', 'slug', 'name', 'plural_name', 'store_category',
                   'preferred_unit_metric', 'preferred_shopping_unit_metric', 'preferred_unit_imperial',
-                  'preferred_shopping_unit_imperial', 'properties', 'fdc_id', 'comment',)
+                  'preferred_shopping_unit_imperial', 'properties', 'properties_food_amount', 'properties_food_unit', 'properties_source', 'fdc_id', 'comment',)
         read_only_fields = ('id',)
 
 
