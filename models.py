@@ -4,7 +4,6 @@ from django.db import models
 
 
 class OpenDataUser(models.Model):
-
     user = AutoOneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     moderator_user = models.BooleanField(default=False)
     verified_user = models.BooleanField(default=False)
@@ -13,12 +12,25 @@ class OpenDataUser(models.Model):
         return str(self.user)
 
 
+class OpenDataVersion(models.Model):
+    name = models.CharField(max_length=128, unique=True)
+    code = models.CharField(max_length=16, unique=True)
+
+    comment = models.TextField(blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f'{self.name} ({self.code})'
+
+
 class OpenDataBaseModel(models.Model):
     slug = models.CharField(max_length=128, unique=True)
     comment = models.TextField(blank=True)
     created_by = models.ForeignKey(User, on_delete=models.PROTECT)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    version = models.ForeignKey(OpenDataVersion, on_delete=models.PROTECT)
 
     class Meta:
         abstract = True

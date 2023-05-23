@@ -14,7 +14,13 @@
             <div class="row">
                 <div class="col-12">
                     <b-form v-if="store">
-
+                        <b-form-group :label="$t('Version')" description="">
+                            <generic-multiselect
+                                @change="store.version = $event.val"
+                                :initial_single_selection="store.version"
+                                label="name" :model="OpenDataModels.OPEN_DATA_VERSION"
+                                :multiple="false"/>
+                        </b-form-group>
 
                         <b-form-group :label="$t('Slug')" description="">
                             <b-form-input v-model="store.slug"></b-form-input>
@@ -109,6 +115,7 @@ export default {
                 })
             } else {
                 this.store = {
+                    version: {'id': 1, 'name': 'base', 'code': 'base'},
                     slug: '',
                     name: '',
                     category_to_store: [],

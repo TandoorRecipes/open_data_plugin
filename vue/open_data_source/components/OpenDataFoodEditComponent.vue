@@ -16,6 +16,14 @@
             <div class="row">
                 <div class="col-12">
                     <b-form v-if="food">
+                        <b-form-group :label="$t('Version')" description="">
+                            <generic-multiselect
+                                @change="food.version = $event.val"
+                                :initial_single_selection="food.version"
+                                label="name" :model="OpenDataModels.OPEN_DATA_VERSION"
+                                :multiple="false"/>
+                        </b-form-group>
+
                         <b-form-group :label="$t('FDC ID')" description="">
                             <b-input-group>
                                 <b-form-input v-model="food.fdc_id"></b-form-input>
@@ -175,6 +183,7 @@ export default {
                 })
             } else {
                 this.food = {
+                    version: {'id': 1, 'name': 'base', 'code': 'base'},
                     slug: '',
                     name: '',
                     plural_name: '',

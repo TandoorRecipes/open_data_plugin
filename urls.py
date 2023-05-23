@@ -6,6 +6,7 @@ from recipes.plugins.open_data_plugin import views, api
 from recipes.settings import DEBUG
 
 open_data_router = routers.DefaultRouter()
+open_data_router.register(r'open-data-version', api.OpenDataVersionViewSet)
 open_data_router.register(r'open-data-unit', api.OpenDataUnitViewSet)
 open_data_router.register(r'open-data-category', api.OpenDataCategoryViewSet)
 open_data_router.register(r'open-data-store', api.OpenDataStoreViewSet)

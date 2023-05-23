@@ -1915,6 +1915,12 @@ export interface OpenDataCategory {
     'id'?: number;
     /**
      * 
+     * @type {OpenDataUnitVersion}
+     * @memberof OpenDataCategory
+     */
+    'version': OpenDataUnitVersion;
+    /**
+     * 
      * @type {string}
      * @memberof OpenDataCategory
      */
@@ -1931,6 +1937,12 @@ export interface OpenDataCategory {
      * @memberof OpenDataCategory
      */
     'comment'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OpenDataCategory
+     */
+    'created_by'?: string;
 }
 /**
  * 
@@ -1944,6 +1956,12 @@ export interface OpenDataConversion {
      * @memberof OpenDataConversion
      */
     'id'?: number;
+    /**
+     * 
+     * @type {OpenDataUnitVersion}
+     * @memberof OpenDataConversion
+     */
+    'version': OpenDataUnitVersion;
     /**
      * 
      * @type {string}
@@ -1961,7 +1979,7 @@ export interface OpenDataConversion {
      * @type {string}
      * @memberof OpenDataConversion
      */
-    'base_amount'?: string;
+    'base_amount': string;
     /**
      * 
      * @type {OpenDataConversionFoodPreferredUnitMetric}
@@ -1973,7 +1991,7 @@ export interface OpenDataConversion {
      * @type {string}
      * @memberof OpenDataConversion
      */
-    'converted_amount'?: string;
+    'converted_amount': string;
     /**
      * 
      * @type {OpenDataConversionFoodPreferredUnitMetric}
@@ -1992,6 +2010,12 @@ export interface OpenDataConversion {
      * @memberof OpenDataConversion
      */
     'comment'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OpenDataConversion
+     */
+    'created_by'?: string;
 }
 /**
  * 
@@ -2005,6 +2029,12 @@ export interface OpenDataConversionFood {
      * @memberof OpenDataConversionFood
      */
     'id'?: number;
+    /**
+     * 
+     * @type {OpenDataUnitVersion}
+     * @memberof OpenDataConversionFood
+     */
+    'version': OpenDataUnitVersion;
     /**
      * 
      * @type {string}
@@ -2061,6 +2091,24 @@ export interface OpenDataConversionFood {
     'properties': Array<OpenDataConversionFoodPropertiesInner> | null;
     /**
      * 
+     * @type {number}
+     * @memberof OpenDataConversionFood
+     */
+    'properties_food_amount'?: number;
+    /**
+     * 
+     * @type {OpenDataConversionFoodPreferredUnitMetric}
+     * @memberof OpenDataConversionFood
+     */
+    'properties_food_unit': OpenDataConversionFoodPreferredUnitMetric;
+    /**
+     * 
+     * @type {string}
+     * @memberof OpenDataConversionFood
+     */
+    'properties_source'?: string;
+    /**
+     * 
      * @type {string}
      * @memberof OpenDataConversionFood
      */
@@ -2071,6 +2119,12 @@ export interface OpenDataConversionFood {
      * @memberof OpenDataConversionFood
      */
     'comment'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OpenDataConversionFood
+     */
+    'created_by'?: string;
 }
 /**
  * 
@@ -2084,6 +2138,12 @@ export interface OpenDataConversionFoodPreferredUnitMetric {
      * @memberof OpenDataConversionFoodPreferredUnitMetric
      */
     'id'?: number;
+    /**
+     * 
+     * @type {OpenDataUnitVersion}
+     * @memberof OpenDataConversionFoodPreferredUnitMetric
+     */
+    'version': OpenDataUnitVersion;
     /**
      * 
      * @type {string}
@@ -2120,6 +2180,12 @@ export interface OpenDataConversionFoodPreferredUnitMetric {
      * @memberof OpenDataConversionFoodPreferredUnitMetric
      */
     'comment'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OpenDataConversionFoodPreferredUnitMetric
+     */
+    'created_by'?: string;
 }
 
 export const OpenDataConversionFoodPreferredUnitMetricBaseUnitEnum = {
@@ -2174,7 +2240,7 @@ export interface OpenDataConversionFoodPropertiesInner {
      * @type {string}
      * @memberof OpenDataConversionFoodPropertiesInner
      */
-    'property_amount'?: string;
+    'property_amount': string;
 }
 /**
  * 
@@ -2188,6 +2254,12 @@ export interface OpenDataConversionFoodPropertiesInnerProperty {
      * @memberof OpenDataConversionFoodPropertiesInnerProperty
      */
     'id'?: number;
+    /**
+     * 
+     * @type {OpenDataUnitVersion}
+     * @memberof OpenDataConversionFoodPropertiesInnerProperty
+     */
+    'version': OpenDataUnitVersion;
     /**
      * 
      * @type {string}
@@ -2212,6 +2284,12 @@ export interface OpenDataConversionFoodPropertiesInnerProperty {
      * @memberof OpenDataConversionFoodPropertiesInnerProperty
      */
     'comment'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OpenDataConversionFoodPropertiesInnerProperty
+     */
+    'created_by'?: string;
 }
 /**
  * 
@@ -2225,6 +2303,12 @@ export interface OpenDataFood {
      * @memberof OpenDataFood
      */
     'id'?: number;
+    /**
+     * 
+     * @type {OpenDataUnitVersion}
+     * @memberof OpenDataFood
+     */
+    'version': OpenDataUnitVersion;
     /**
      * 
      * @type {string}
@@ -2281,6 +2365,24 @@ export interface OpenDataFood {
     'properties': Array<OpenDataConversionFoodPropertiesInner> | null;
     /**
      * 
+     * @type {number}
+     * @memberof OpenDataFood
+     */
+    'properties_food_amount'?: number;
+    /**
+     * 
+     * @type {OpenDataConversionFoodPreferredUnitMetric}
+     * @memberof OpenDataFood
+     */
+    'properties_food_unit': OpenDataConversionFoodPreferredUnitMetric;
+    /**
+     * 
+     * @type {string}
+     * @memberof OpenDataFood
+     */
+    'properties_source'?: string;
+    /**
+     * 
      * @type {string}
      * @memberof OpenDataFood
      */
@@ -2291,6 +2393,12 @@ export interface OpenDataFood {
      * @memberof OpenDataFood
      */
     'comment'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OpenDataFood
+     */
+    'created_by'?: string;
 }
 /**
  * 
@@ -2304,6 +2412,12 @@ export interface OpenDataProperty {
      * @memberof OpenDataProperty
      */
     'id'?: number;
+    /**
+     * 
+     * @type {OpenDataUnitVersion}
+     * @memberof OpenDataProperty
+     */
+    'version': OpenDataUnitVersion;
     /**
      * 
      * @type {string}
@@ -2328,6 +2442,12 @@ export interface OpenDataProperty {
      * @memberof OpenDataProperty
      */
     'comment'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OpenDataProperty
+     */
+    'created_by'?: string;
 }
 /**
  * 
@@ -2341,6 +2461,12 @@ export interface OpenDataStore {
      * @memberof OpenDataStore
      */
     'id'?: number;
+    /**
+     * 
+     * @type {OpenDataUnitVersion}
+     * @memberof OpenDataStore
+     */
+    'version': OpenDataUnitVersion;
     /**
      * 
      * @type {string}
@@ -2365,6 +2491,12 @@ export interface OpenDataStore {
      * @memberof OpenDataStore
      */
     'comment'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OpenDataStore
+     */
+    'created_by'?: string;
 }
 /**
  * 
@@ -2411,6 +2543,12 @@ export interface OpenDataStoreCategoryToStoreInnerCategory {
     'id'?: number;
     /**
      * 
+     * @type {OpenDataUnitVersion}
+     * @memberof OpenDataStoreCategoryToStoreInnerCategory
+     */
+    'version': OpenDataUnitVersion;
+    /**
+     * 
      * @type {string}
      * @memberof OpenDataStoreCategoryToStoreInnerCategory
      */
@@ -2427,6 +2565,12 @@ export interface OpenDataStoreCategoryToStoreInnerCategory {
      * @memberof OpenDataStoreCategoryToStoreInnerCategory
      */
     'comment'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OpenDataStoreCategoryToStoreInnerCategory
+     */
+    'created_by'?: string;
 }
 /**
  * 
@@ -2440,6 +2584,12 @@ export interface OpenDataUnit {
      * @memberof OpenDataUnit
      */
     'id'?: number;
+    /**
+     * 
+     * @type {OpenDataUnitVersion}
+     * @memberof OpenDataUnit
+     */
+    'version': OpenDataUnitVersion;
     /**
      * 
      * @type {string}
@@ -2476,6 +2626,12 @@ export interface OpenDataUnit {
      * @memberof OpenDataUnit
      */
     'comment'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OpenDataUnit
+     */
+    'created_by'?: string;
 }
 
 export const OpenDataUnitBaseUnitEnum = {
@@ -2507,6 +2663,68 @@ export const OpenDataUnitTypeEnum = {
 
 export type OpenDataUnitTypeEnum = typeof OpenDataUnitTypeEnum[keyof typeof OpenDataUnitTypeEnum];
 
+/**
+ * 
+ * @export
+ * @interface OpenDataUnitVersion
+ */
+export interface OpenDataUnitVersion {
+    /**
+     * 
+     * @type {number}
+     * @memberof OpenDataUnitVersion
+     */
+    'id'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof OpenDataUnitVersion
+     */
+    'name': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OpenDataUnitVersion
+     */
+    'code': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OpenDataUnitVersion
+     */
+    'comment'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface OpenDataVersion
+ */
+export interface OpenDataVersion {
+    /**
+     * 
+     * @type {number}
+     * @memberof OpenDataVersion
+     */
+    'id'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof OpenDataVersion
+     */
+    'name': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OpenDataVersion
+     */
+    'code': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OpenDataVersion
+     */
+    'comment'?: string;
+}
 /**
  * 
  * @export
@@ -5223,6 +5441,39 @@ export const ApiApiAxiosParamCreator = function (configuration?: Configuration) 
         },
         /**
          * 
+         * @param {OpenDataVersion} [openDataVersion] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createOpenDataVersion: async (openDataVersion?: OpenDataVersion, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/open-data-version/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(openDataVersion, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @param {Recipe} [recipe] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -6420,6 +6671,39 @@ export const ApiApiAxiosParamCreator = function (configuration?: Configuration) 
             // verify required parameter 'id' is not null or undefined
             assertParamExists('destroyOpenDataUnit', 'id', id)
             const localVarPath = `/api/open-data-unit/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} id A unique integer value identifying this open data version.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        destroyOpenDataVersion: async (id: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('destroyOpenDataVersion', 'id', id)
+            const localVarPath = `/api/open-data-version/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -7695,6 +7979,35 @@ export const ApiApiAxiosParamCreator = function (configuration?: Configuration) 
          */
         listOpenDataUnits: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/open-data-unit/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listOpenDataVersions: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/open-data-version/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -9466,6 +9779,43 @@ export const ApiApiAxiosParamCreator = function (configuration?: Configuration) 
         },
         /**
          * 
+         * @param {string} id A unique integer value identifying this open data version.
+         * @param {OpenDataVersion} [openDataVersion] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        partialUpdateOpenDataVersion: async (id: string, openDataVersion?: OpenDataVersion, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('partialUpdateOpenDataVersion', 'id', id)
+            const localVarPath = `/api/open-data-version/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(openDataVersion, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @param {string} id A unique integer value identifying this recipe.
          * @param {Recipe} [recipe] 
          * @param {*} [options] Override http request option.
@@ -10937,6 +11287,39 @@ export const ApiApiAxiosParamCreator = function (configuration?: Configuration) 
             // verify required parameter 'id' is not null or undefined
             assertParamExists('retrieveOpenDataUnit', 'id', id)
             const localVarPath = `/api/open-data-unit/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} id A unique integer value identifying this open data version.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        retrieveOpenDataVersion: async (id: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('retrieveOpenDataVersion', 'id', id)
+            const localVarPath = `/api/open-data-version/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -12498,6 +12881,43 @@ export const ApiApiAxiosParamCreator = function (configuration?: Configuration) 
         },
         /**
          * 
+         * @param {string} id A unique integer value identifying this open data version.
+         * @param {OpenDataVersion} [openDataVersion] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateOpenDataVersion: async (id: string, openDataVersion?: OpenDataVersion, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('updateOpenDataVersion', 'id', id)
+            const localVarPath = `/api/open-data-version/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(openDataVersion, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @param {string} id A unique integer value identifying this recipe.
          * @param {Recipe} [recipe] 
          * @param {*} [options] Override http request option.
@@ -13287,6 +13707,16 @@ export const ApiApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {OpenDataVersion} [openDataVersion] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async createOpenDataVersion(openDataVersion?: OpenDataVersion, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OpenDataVersion>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createOpenDataVersion(openDataVersion, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @param {Recipe} [recipe] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -13648,6 +14078,16 @@ export const ApiApiFp = function(configuration?: Configuration) {
          */
         async destroyOpenDataUnit(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.destroyOpenDataUnit(id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} id A unique integer value identifying this open data version.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async destroyOpenDataVersion(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.destroyOpenDataVersion(id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -14027,6 +14467,15 @@ export const ApiApiFp = function(configuration?: Configuration) {
          */
         async listOpenDataUnits(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<OpenDataUnit>>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.listOpenDataUnits(options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async listOpenDataVersions(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<OpenDataVersion>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.listOpenDataVersions(options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -14535,6 +14984,17 @@ export const ApiApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {string} id A unique integer value identifying this open data version.
+         * @param {OpenDataVersion} [openDataVersion] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async partialUpdateOpenDataVersion(id: string, openDataVersion?: OpenDataVersion, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OpenDataVersion>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.partialUpdateOpenDataVersion(id, openDataVersion, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @param {string} id A unique integer value identifying this recipe.
          * @param {Recipe} [recipe] 
          * @param {*} [options] Override http request option.
@@ -14975,6 +15435,16 @@ export const ApiApiFp = function(configuration?: Configuration) {
          */
         async retrieveOpenDataUnit(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OpenDataUnit>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.retrieveOpenDataUnit(id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} id A unique integer value identifying this open data version.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async retrieveOpenDataVersion(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OpenDataVersion>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.retrieveOpenDataVersion(id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -15440,6 +15910,17 @@ export const ApiApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {string} id A unique integer value identifying this open data version.
+         * @param {OpenDataVersion} [openDataVersion] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async updateOpenDataVersion(id: string, openDataVersion?: OpenDataVersion, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OpenDataVersion>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateOpenDataVersion(id, openDataVersion, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @param {string} id A unique integer value identifying this recipe.
          * @param {Recipe} [recipe] 
          * @param {*} [options] Override http request option.
@@ -15791,6 +16272,15 @@ export const ApiApiFactory = function (configuration?: Configuration, basePath?:
         },
         /**
          * 
+         * @param {OpenDataVersion} [openDataVersion] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createOpenDataVersion(openDataVersion?: OpenDataVersion, options?: any): AxiosPromise<OpenDataVersion> {
+            return localVarFp.createOpenDataVersion(openDataVersion, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @param {Recipe} [recipe] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -16117,6 +16607,15 @@ export const ApiApiFactory = function (configuration?: Configuration, basePath?:
          */
         destroyOpenDataUnit(id: string, options?: any): AxiosPromise<void> {
             return localVarFp.destroyOpenDataUnit(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} id A unique integer value identifying this open data version.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        destroyOpenDataVersion(id: string, options?: any): AxiosPromise<void> {
+            return localVarFp.destroyOpenDataVersion(id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -16458,6 +16957,14 @@ export const ApiApiFactory = function (configuration?: Configuration, basePath?:
          */
         listOpenDataUnits(options?: any): AxiosPromise<Array<OpenDataUnit>> {
             return localVarFp.listOpenDataUnits(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listOpenDataVersions(options?: any): AxiosPromise<Array<OpenDataVersion>> {
+            return localVarFp.listOpenDataVersions(options).then((request) => request(axios, basePath));
         },
         /**
          * optional parameters  - **recipe**: id of recipe - only return books for that recipe - **book**: id of book - only return recipes in that book
@@ -16920,6 +17427,16 @@ export const ApiApiFactory = function (configuration?: Configuration, basePath?:
         },
         /**
          * 
+         * @param {string} id A unique integer value identifying this open data version.
+         * @param {OpenDataVersion} [openDataVersion] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        partialUpdateOpenDataVersion(id: string, openDataVersion?: OpenDataVersion, options?: any): AxiosPromise<OpenDataVersion> {
+            return localVarFp.partialUpdateOpenDataVersion(id, openDataVersion, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @param {string} id A unique integer value identifying this recipe.
          * @param {Recipe} [recipe] 
          * @param {*} [options] Override http request option.
@@ -17319,6 +17836,15 @@ export const ApiApiFactory = function (configuration?: Configuration, basePath?:
          */
         retrieveOpenDataUnit(id: string, options?: any): AxiosPromise<OpenDataUnit> {
             return localVarFp.retrieveOpenDataUnit(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} id A unique integer value identifying this open data version.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        retrieveOpenDataVersion(id: string, options?: any): AxiosPromise<OpenDataVersion> {
+            return localVarFp.retrieveOpenDataVersion(id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -17739,6 +18265,16 @@ export const ApiApiFactory = function (configuration?: Configuration, basePath?:
         },
         /**
          * 
+         * @param {string} id A unique integer value identifying this open data version.
+         * @param {OpenDataVersion} [openDataVersion] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateOpenDataVersion(id: string, openDataVersion?: OpenDataVersion, options?: any): AxiosPromise<OpenDataVersion> {
+            return localVarFp.updateOpenDataVersion(id, openDataVersion, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @param {string} id A unique integer value identifying this recipe.
          * @param {Recipe} [recipe] 
          * @param {*} [options] Override http request option.
@@ -18109,6 +18645,17 @@ export class ApiApi extends BaseAPI {
      */
     public createOpenDataUnit(openDataUnit?: OpenDataUnit, options?: AxiosRequestConfig) {
         return ApiApiFp(this.configuration).createOpenDataUnit(openDataUnit, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {OpenDataVersion} [openDataVersion] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ApiApi
+     */
+    public createOpenDataVersion(openDataVersion?: OpenDataVersion, options?: AxiosRequestConfig) {
+        return ApiApiFp(this.configuration).createOpenDataVersion(openDataVersion, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -18510,6 +19057,17 @@ export class ApiApi extends BaseAPI {
      */
     public destroyOpenDataUnit(id: string, options?: AxiosRequestConfig) {
         return ApiApiFp(this.configuration).destroyOpenDataUnit(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} id A unique integer value identifying this open data version.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ApiApi
+     */
+    public destroyOpenDataVersion(id: string, options?: AxiosRequestConfig) {
+        return ApiApiFp(this.configuration).destroyOpenDataVersion(id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -18927,6 +19485,16 @@ export class ApiApi extends BaseAPI {
      */
     public listOpenDataUnits(options?: AxiosRequestConfig) {
         return ApiApiFp(this.configuration).listOpenDataUnits(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ApiApi
+     */
+    public listOpenDataVersions(options?: AxiosRequestConfig) {
+        return ApiApiFp(this.configuration).listOpenDataVersions(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -19480,6 +20048,18 @@ export class ApiApi extends BaseAPI {
 
     /**
      * 
+     * @param {string} id A unique integer value identifying this open data version.
+     * @param {OpenDataVersion} [openDataVersion] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ApiApi
+     */
+    public partialUpdateOpenDataVersion(id: string, openDataVersion?: OpenDataVersion, options?: AxiosRequestConfig) {
+        return ApiApiFp(this.configuration).partialUpdateOpenDataVersion(id, openDataVersion, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
      * @param {string} id A unique integer value identifying this recipe.
      * @param {Recipe} [recipe] 
      * @param {*} [options] Override http request option.
@@ -19962,6 +20542,17 @@ export class ApiApi extends BaseAPI {
      */
     public retrieveOpenDataUnit(id: string, options?: AxiosRequestConfig) {
         return ApiApiFp(this.configuration).retrieveOpenDataUnit(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} id A unique integer value identifying this open data version.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ApiApi
+     */
+    public retrieveOpenDataVersion(id: string, options?: AxiosRequestConfig) {
+        return ApiApiFp(this.configuration).retrieveOpenDataVersion(id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -20467,6 +21058,18 @@ export class ApiApi extends BaseAPI {
      */
     public updateOpenDataUnit(id: string, openDataUnit?: OpenDataUnit, options?: AxiosRequestConfig) {
         return ApiApiFp(this.configuration).updateOpenDataUnit(id, openDataUnit, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} id A unique integer value identifying this open data version.
+     * @param {OpenDataVersion} [openDataVersion] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ApiApi
+     */
+    public updateOpenDataVersion(id: string, openDataVersion?: OpenDataVersion, options?: AxiosRequestConfig) {
+        return ApiApiFp(this.configuration).updateOpenDataVersion(id, openDataVersion, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

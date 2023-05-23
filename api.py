@@ -6,8 +6,8 @@ from django.http import JsonResponse
 from rest_framework import viewsets, permissions
 from rest_framework.permissions import SAFE_METHODS
 
-from recipes.plugins.open_data_plugin.models import OpenDataUnit, OpenDataFood, OpenDataCategory, OpenDataStore, OpenDataProperty, OpenDataConversion
-from recipes.plugins.open_data_plugin.serializer import OpenDataUnitSerializer, OpenDataFoodSerializer, OpenDataCategorySerializer, OpenDataStoreSerializer, OpenDataPropertySerializer, OpenDataConversionSerializer
+from recipes.plugins.open_data_plugin.models import OpenDataUnit, OpenDataFood, OpenDataCategory, OpenDataStore, OpenDataProperty, OpenDataConversion, OpenDataVersion
+from recipes.plugins.open_data_plugin.serializer import OpenDataUnitSerializer, OpenDataFoodSerializer, OpenDataCategorySerializer, OpenDataStoreSerializer, OpenDataPropertySerializer, OpenDataConversionSerializer, OpenDataVersionSerializer
 from recipes.settings import FDA_API_KEY
 
 
@@ -34,6 +34,11 @@ class OpenDataIsVerified(permissions.BasePermission):
     def has_permission(self, request, view):
         return request.user.opendatauser.verified_user or request.method in SAFE_METHODS
 
+
+class OpenDataVersionViewSet(viewsets.ModelViewSet):
+    queryset = OpenDataVersion.objects.all()
+    serializer_class = OpenDataVersionSerializer
+    permission_classes = [OpenDataIsModerator]
 
 class OpenDataUnitViewSet(viewsets.ModelViewSet):
     queryset = OpenDataUnit.objects.all()

@@ -9,6 +9,7 @@
             <li class="nav-item"><a class="nav-link" :class="{'active':selected_model.name === OpenDataModels.OPEN_DATA_CATEGORY.name}" @click="selected_model = OpenDataModels.OPEN_DATA_CATEGORY">Category</a></li>
             <li class="nav-item"><a class="nav-link" :class="{'active':selected_model.name === OpenDataModels.OPEN_DATA_STORE.name}" @click="selected_model = OpenDataModels.OPEN_DATA_STORE">Store</a></li>
             <li class="nav-item"><a class="nav-link" :class="{'active':selected_model.name === OpenDataModels.OPEN_DATA_PROPERTY.name}" @click="selected_model = OpenDataModels.OPEN_DATA_PROPERTY">Property</a></li>
+            <li class="nav-item"><a class="nav-link" :class="{'active':selected_model.name === OpenDataModels.OPEN_DATA_VERSION.name}" @click="selected_model = OpenDataModels.OPEN_DATA_VERSION">Version</a></li>
         </ul>
 
         <div v-if="selected_model === undefined">

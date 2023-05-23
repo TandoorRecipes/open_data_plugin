@@ -3,11 +3,27 @@ from drf_writable_nested import WritableNestedModelSerializer, UniqueFieldsMixin
 from rest_framework import serializers
 
 from cookbook.serializer import CustomDecimalField
-from recipes.plugins.open_data_plugin.models import OpenDataUnit, OpenDataFood, OpenDataCategory, OpenDataStore, OpenDataProperty, OpenDataStoreCategory, OpenDataConversion, OpenDataFoodProperty
+from recipes.plugins.open_data_plugin.models import OpenDataUnit, OpenDataFood, OpenDataCategory, OpenDataStore, OpenDataProperty, OpenDataStoreCategory, OpenDataConversion, OpenDataFoodProperty, OpenDataVersion
 
 
-class OpenDataUnitSerializer(UniqueFieldsMixin, serializers.ModelSerializer):
+class OpenDataVersionSerializer(UniqueFieldsMixin, serializers.ModelSerializer):
+
+    def create(self, validated_data):
+        if self.context['request'].user.opendatauser.moderator_user:
+            obj, created = OpenDataVersion.objects.get_or_create(name=validated_data['name'], defaults=validated_data)
+        else:
+            obj = OpenDataVersion.objects.filter(name=validated_data['name']).first()
+        return obj
+
+    class Meta:
+        model = OpenDataVersion
+        fields = ('id', 'name', 'code', 'comment',)
+        read_only_fields = ('id',)
+
+
+class OpenDataUnitSerializer(UniqueFieldsMixin, WritableNestedModelSerializer):
     created_by = serializers.SerializerMethodField('get_created_by_name')
+    version = OpenDataVersionSerializer()
 
     def get_created_by_name(self, obj):
         return obj.created_by.username
@@ -20,6 +36,7 @@ class OpenDataUnitSerializer(UniqueFieldsMixin, serializers.ModelSerializer):
 
     def create(self, validated_data):
         validated_data['created_by'] = self.context['request'].user
+        super().create(validated_data)
         obj, created = OpenDataUnit.objects.get_or_create(slug=validated_data['slug'], name=validated_data['name'], defaults=validated_data)
         return obj
 
@@ -28,12 +45,13 @@ class OpenDataUnitSerializer(UniqueFieldsMixin, serializers.ModelSerializer):
 
     class Meta:
         model = OpenDataUnit
-        fields = ('id', 'slug', 'name', 'plural_name', 'base_unit', 'type', 'comment', 'created_by')
+        fields = ('id', 'version', 'slug', 'name', 'plural_name', 'base_unit', 'type', 'comment', 'created_by')
         read_only_fields = ('id', 'created_by',)
 
 
-class OpenDataCategorySerializer(UniqueFieldsMixin, serializers.ModelSerializer):
+class OpenDataCategorySerializer(UniqueFieldsMixin, WritableNestedModelSerializer):
     created_by = serializers.SerializerMethodField('get_created_by_name')
+    version = OpenDataVersionSerializer()
 
     def get_created_by_name(self, obj):
         return obj.created_by.username
@@ -46,6 +64,7 @@ class OpenDataCategorySerializer(UniqueFieldsMixin, serializers.ModelSerializer)
 
     def create(self, validated_data):
         validated_data['created_by'] = self.context['request'].user
+        super().create(validated_data)
         obj, created = OpenDataCategory.objects.get_or_create(slug=validated_data['slug'], name=validated_data['name'], defaults=validated_data)
         return obj
 
@@ -54,7 +73,7 @@ class OpenDataCategorySerializer(UniqueFieldsMixin, serializers.ModelSerializer)
 
     class Meta:
         model = OpenDataCategory
-        fields = ('id', 'slug', 'name', 'comment', 'created_by',)
+        fields = ('id', 'version', 'slug', 'name', 'comment', 'created_by',)
         read_only_fields = ('id', 'created_by',)
 
 
@@ -69,6 +88,7 @@ class OpenDataStoreCategorySerializer(WritableNestedModelSerializer):
 class OpenDataStoreSerializer(WritableNestedModelSerializer):
     category_to_store = OpenDataStoreCategorySerializer(many=True, allow_null=True)
     created_by = serializers.SerializerMethodField('get_created_by_name')
+    version = OpenDataVersionSerializer()
 
     def get_created_by_name(self, obj):
         return obj.created_by.username
@@ -85,12 +105,13 @@ class OpenDataStoreSerializer(WritableNestedModelSerializer):
 
     class Meta:
         model = OpenDataStore
-        fields = ('id', 'slug', 'name', 'category_to_store', 'comment', 'created_by',)
+        fields = ('id', 'version', 'slug', 'name', 'category_to_store', 'comment', 'created_by',)
         read_only_fields = ('id', 'created_by',)
 
 
-class OpenDataPropertySerializer(UniqueFieldsMixin, serializers.ModelSerializer):
+class OpenDataPropertySerializer(UniqueFieldsMixin, WritableNestedModelSerializer):
     created_by = serializers.SerializerMethodField('get_created_by_name')
+    version = OpenDataVersionSerializer()
 
     def get_created_by_name(self, obj):
         return obj.created_by.username
@@ -103,12 +124,13 @@ class OpenDataPropertySerializer(UniqueFieldsMixin, serializers.ModelSerializer)
 
     def create(self, validated_data):
         validated_data['created_by'] = self.context['request'].user
+        super().create(validated_data)
         obj, created = OpenDataProperty.objects.get_or_create(slug=validated_data['slug'], name=validated_data['name'], defaults=validated_data)
         return obj
 
     class Meta:
         model = OpenDataProperty
-        fields = ('id', 'slug', 'name', 'unit', 'comment', 'created_by',)
+        fields = ('id', 'version', 'slug', 'name', 'unit', 'comment', 'created_by',)
         read_only_fields = ('id', 'created_by',)
 
 
@@ -135,6 +157,7 @@ class OpenDataFoodSerializer(WritableNestedModelSerializer):
     properties = OpenDataFoodPropertySerializer(allow_null=True, many=True)
     properties_food_unit = OpenDataUnitSerializer()
     created_by = serializers.SerializerMethodField('get_created_by_name')
+    version = OpenDataVersionSerializer()
 
     def get_created_by_name(self, obj):
         return obj.created_by.username
@@ -154,9 +177,9 @@ class OpenDataFoodSerializer(WritableNestedModelSerializer):
 
     class Meta:
         model = OpenDataFood
-        fields = ('id', 'slug', 'name', 'plural_name', 'store_category',
+        fields = ('id', 'version', 'slug', 'name', 'plural_name', 'store_category',
                   'preferred_unit_metric', 'preferred_shopping_unit_metric', 'preferred_unit_imperial',
-                  'preferred_shopping_unit_imperial', 'properties', 'properties_food_amount', 'properties_food_unit', 'properties_source', 'fdc_id', 'comment','created_by',)
+                  'preferred_shopping_unit_imperial', 'properties', 'properties_food_amount', 'properties_food_unit', 'properties_source', 'fdc_id', 'comment', 'created_by',)
         read_only_fields = ('id', 'created_by',)
 
 
@@ -167,6 +190,7 @@ class OpenDataConversionSerializer(WritableNestedModelSerializer):
     base_amount = CustomDecimalField()
     converted_amount = CustomDecimalField()
     created_by = serializers.SerializerMethodField('get_created_by_name')
+    version = OpenDataVersionSerializer()
 
     def get_created_by_name(self, obj):
         return obj.created_by.username
@@ -183,5 +207,5 @@ class OpenDataConversionSerializer(WritableNestedModelSerializer):
 
     class Meta:
         model = OpenDataConversion
-        fields = ('id', 'slug', 'food', 'base_amount', 'base_unit', 'converted_amount', 'converted_unit', 'source', 'comment', 'created_by',)
+        fields = ('id', 'version', 'slug', 'food', 'base_amount', 'base_unit', 'converted_amount', 'converted_unit', 'source', 'comment', 'created_by',)
         read_only_fields = ('id', 'created_by',)

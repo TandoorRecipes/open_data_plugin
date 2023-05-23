@@ -28,14 +28,16 @@
             <thead>
             <tr>
                 <th v-for="f in model.table_fields" v-bind:key="f">{{ f }}</th>
-                <th>Created By</th>
+                <th v-if="model.name !== OpenDataModels.OPEN_DATA_VERSION.name">Created By</th>
+                <th v-if="model.name !== OpenDataModels.OPEN_DATA_VERSION.name">Version</th>
                 <th>Actions</th>
             </tr>
             </thead>
             <tbody>
             <tr v-for="o in filtered_objects" v-bind:key="o.id">
                 <td v-for="f in model.table_fields" v-bind:key="`${o.id}_${f}`">{{ o[f] }}</td>
-                <td>{{ o.created_by }}</td>
+                <td v-if="model.name !== OpenDataModels.OPEN_DATA_VERSION.name">{{ o.created_by }}</td>
+                <td v-if="model.name !== OpenDataModels.OPEN_DATA_VERSION.name"><b-badge>{{ o.version.code }}</b-badge></td>
                 <td>
                     <b-button-group>
                         <b-button variant="success"
@@ -88,7 +90,14 @@ export default {
     },
     computed: {
         filtered_objects: function () {
-            return this.objects.filter(x => x.name.toLowerCase().includes(this.search_name.toLowerCase())).filter(x => x.slug.toLowerCase().includes(this.search_slug.toLowerCase()))
+            let data = this.objects
+            if (data.length > 0 && data[0].name !== undefined){
+                data = data.filter(x => x.name.toLowerCase().includes(this.search_name.toLowerCase()))
+            }
+            if (data.length > 0 && data[0].slug !== undefined){
+                data = data.filter(x => x.slug.toLowerCase().includes(this.search_slug.toLowerCase()))
+            }
+            return data
         },
     },
     watch: {
