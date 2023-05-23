@@ -1,19 +1,19 @@
 <template>
     <div>
-        <b-btn @click="show_modal = true; modal_action=Actions.CREATE" class="mb-2">New</b-btn>
+        <b-btn @click="show_modal = false;  modal_action=Actions.CREATE; show_modal = true;" class="mb-2">New</b-btn>
 
         <template v-if="model.name === OpenDataModels.OPEN_DATA_FOOD.name">
             <open-data-food-edit-component :show="show_modal" :object="selected_object"
                                            @hidden="finishAction"></open-data-food-edit-component>
         </template>
-        <template v-if="model.name === OpenDataModels.OPEN_DATA_STORE.name">
+        <template v-else-if="model.name === OpenDataModels.OPEN_DATA_STORE.name">
             <open-data-store-edit-component :show="show_modal" :object="selected_object"
                                             @hidden="finishAction"></open-data-store-edit-component>
         </template>
         <template v-else>
             <generic-modal-form :model="model" :models="OpenDataModels" :action="modal_action" :show="show_modal"
                                 :item1="selected_object"
-                                @finish-action="finishAction"/>
+                                @hidden="finishAction" @finish-action="finishAction"/>
         </template>
 
         <b-form-group label="Search Name">
@@ -37,12 +37,12 @@
                 <td>
                     <b-button-group>
                         <b-button variant="success"
-                                  @click=" modal_action=Actions.UPDATE; selected_object=o; show_modal = true;"><i
+                                  @click="show_modal = false;  modal_action=Actions.UPDATE; selected_object=o; show_modal = true;"><i
                             class="fas fa-edit"></i></b-button>
                         <b-button variant="info"
                                   @click="copyObject(o)"><i class="fas fa-copy"></i></b-button>
                         <b-button variant="danger"
-                                  @click=" modal_action=Actions.DELETE; selected_object=o; show_modal = true;"><i
+                                  @click="show_modal = false;  modal_action=Actions.DELETE; selected_object=o; show_modal = true;"><i
                             class="fas fa-trash"></i></b-button>
                     </b-button-group>
                 </td>

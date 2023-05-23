@@ -119,6 +119,7 @@
                 </div>
             </div>
             <template v-slot:modal-footer>
+                <b-button class="mx-1" variant="secondary" v-on:click="cancelAction">{{ $t("Cancel") }}</b-button>
                 <b-button variant="primary" @click="updateData">{{ $t('Save') }}</b-button>
                 <b-button variant="danger" @click="deleteData" v-if="food.id !== undefined">{{
                         $t('Delete')
@@ -229,7 +230,7 @@ export default {
             })
         },
         cancelAction: function () {
-            this.$emit("hidden", "")
+            this.$emit("hidden")
         },
     },
 }
