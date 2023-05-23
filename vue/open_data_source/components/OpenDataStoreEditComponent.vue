@@ -33,9 +33,14 @@
                         <draggable :list="store.category_to_store" group="supermarket_categories"
                                    :empty-insert-threshold="10" @sort="sortCategories()">
                             <div v-for="c in store.category_to_store" :key="c.id">
-                                <button class="btn btn-block btn-sm btn-primary" style="margin-top: 0.5vh">
-                                    <i class="fas fa-grip-vertical"></i> {{ c.category.name }}
-                                </button>
+                                <b-button-group>
+                                    <b-button class="btn btn-block btn-sm btn-primary" style="margin-top: 0.5vh">
+                                        <i class="fas fa-grip-vertical"></i> {{ c.category.name }}
+                                    </b-button>
+                                    <b-button variant="danger" @click="deleteCategory(c)"><i class="fas fa-trash"></i>
+                                    </b-button>
+                                </b-button-group>
+
                             </div>
                         </draggable>
 
@@ -121,9 +126,21 @@ export default {
                     StandardToasts.makeStandardToast(this, StandardToasts.FAIL_CREATE, err, true)
                 })
             } else {
+                let properties = JSON.parse(JSON.stringify(this.store.category_to_store));
+                this.store.category_to_store = []
+
                 apiClient.createOpenDataStore(this.store).then(r => {
-                    this.cancelAction()
-                    StandardToasts.makeStandardToast(this, StandardToasts.SUCCESS_CREATE)
+                    this.store = r.data
+                    properties.forEach(p => p.store = r.data.id)
+                    this.store.category_to_store = properties
+
+                    apiClient.updateOpenDataStore(this.store.id, this.store).then(r => {
+                        this.cancelAction()
+                        StandardToasts.makeStandardToast(this, StandardToasts.SUCCESS_CREATE)
+                    }).catch((err) => {
+                        console.log(err)
+                        StandardToasts.makeStandardToast(this, StandardToasts.FAIL_UPDATE, err, true)
+                    })
                 }).catch((err) => {
                     StandardToasts.makeStandardToast(this, StandardToasts.FAIL_CREATE, err, true)
                 })
@@ -139,13 +156,18 @@ export default {
             })
         },
         addCategory() {
-            this.store.category_to_store.push(
-                {
-                    category: this.adding_category,
-                    store: this.store.id,
-                    order: 0
-                }
-            )
+            if (this.store.category_to_store.filter(x => x.category.id === this.adding_category.id).length === 0) {
+                this.store.category_to_store.push(
+                    {
+                        category: this.adding_category,
+                        store: this.store.id,
+                        order: 0
+                    }
+                )
+            }
+        },
+        deleteCategory: function (c) {
+            this.store.category_to_store = this.store.category_to_store.filter(x => x !== c)
         },
         sortCategories: function () {
             this.store.category_to_store.forEach(function (element, index) {

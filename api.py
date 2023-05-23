@@ -92,7 +92,7 @@ class FDCViewSet(viewsets.ViewSet):
 
             unit_g = OpenDataUnit.objects.filter(base_unit='G').first()
             if unit_g:
-                parsed_data['properties_food_unit'] = {'id': unit_g.id, 'name': unit_g.name, 'slug': unit_g.slug}
+                parsed_data['properties_food_unit'] = {'id': unit_g.id, 'slug': unit_g.slug, 'name': unit_g.name, 'type': unit_g.type, }
 
             if OpenDataProperty.objects.filter(fdc_id__isnull=False).count() == 0:  # TODO better solution with cache
                 OpenDataProperty.objects.create(slug='property-calories', name='Calories', unit='kcal', fdc_id=1008, created_by=request.user)
