@@ -48,12 +48,14 @@ class FDCViewSet(viewsets.ViewSet):
 
         try:
             data = json.loads(response.content)
+
+            unit_g = OpenDataUnit.objects.filter(base_unit='G').first()
             parsed_data = {
                 'slug': f"food-{data['description'].lower().replace(' ', '-').replace(',', '')}",
                 'name': data['description'],
                 'plural_name': data['description'],
                 'properties_food_amount': 100,
-                'properties_food_unit': None,  # TODO get unit g
+                'properties_food_unit': {'id': unit_g.id, 'name': unit_g.name, 'slug': unit_g.slug},  # TODO get unit g
                 'properties_source': f'https://fdc.nal.usda.gov/fdc-app.html#/food-details/{pk}/nutrients',
                 'properties': [],
                 'fdc_id': pk

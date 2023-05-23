@@ -2,10 +2,17 @@ from django.db.models import Q
 from drf_writable_nested import WritableNestedModelSerializer, UniqueFieldsMixin
 from rest_framework import serializers
 
+from cookbook.serializer import CustomDecimalField
 from recipes.plugins.open_data_plugin.models import OpenDataUnit, OpenDataFood, OpenDataCategory, OpenDataStore, OpenDataProperty, OpenDataStoreCategory, OpenDataConversion, OpenDataFoodProperty
 
 
 class OpenDataUnitSerializer(UniqueFieldsMixin, serializers.ModelSerializer):
+
+    def validate(self, data):
+        slug_prefix = 'unit-'
+        if not data['slug'].startswith(slug_prefix):
+            raise serializers.ValidationError(f'Slug has to start with {slug_prefix}')
+        return super().validate(data)
 
     def create(self, validated_data):
         validated_data['created_by'] = self.context['request'].user
@@ -22,6 +29,13 @@ class OpenDataUnitSerializer(UniqueFieldsMixin, serializers.ModelSerializer):
 
 
 class OpenDataCategorySerializer(UniqueFieldsMixin, serializers.ModelSerializer):
+
+    def validate(self, data):
+        slug_prefix = 'category-'
+        if not data['slug'].startswith(slug_prefix):
+            raise serializers.ValidationError(f'Slug has to start with {slug_prefix}')
+        return super().validate(data)
+
     def create(self, validated_data):
         validated_data['created_by'] = self.context['request'].user
         obj, created = OpenDataCategory.objects.get_or_create(slug=validated_data['slug'], name=validated_data['name'], defaults=validated_data)
@@ -39,10 +53,6 @@ class OpenDataCategorySerializer(UniqueFieldsMixin, serializers.ModelSerializer)
 class OpenDataStoreCategorySerializer(WritableNestedModelSerializer):
     category = OpenDataCategorySerializer()
 
-    def create(self, validated_data):
-        validated_data['created_by'] = self.context['request'].user
-        return super().create(validated_data)
-
     class Meta:
         model = OpenDataStoreCategory
         fields = ('id', 'category', 'store', 'order',)
@@ -50,6 +60,12 @@ class OpenDataStoreCategorySerializer(WritableNestedModelSerializer):
 
 class OpenDataStoreSerializer(WritableNestedModelSerializer):
     category_to_store = OpenDataStoreCategorySerializer(many=True, allow_null=True)
+
+    def validate(self, data):
+        slug_prefix = 'store-'
+        if not data['slug'].startswith(slug_prefix):
+            raise serializers.ValidationError(f'Slug has to start with {slug_prefix}')
+        return super().validate(data)
 
     def create(self, validated_data):
         validated_data['created_by'] = self.context['request'].user
@@ -61,6 +77,12 @@ class OpenDataStoreSerializer(WritableNestedModelSerializer):
 
 
 class OpenDataPropertySerializer(UniqueFieldsMixin, serializers.ModelSerializer):
+    def validate(self, data):
+        slug_prefix = 'property-'
+        if not data['slug'].startswith(slug_prefix):
+            raise serializers.ValidationError(f'Slug has to start with {slug_prefix}')
+        return super().validate(data)
+
     def create(self, validated_data):
         validated_data['created_by'] = self.context['request'].user
         obj, created = OpenDataProperty.objects.get_or_create(slug=validated_data['slug'], name=validated_data['name'], defaults=validated_data)
@@ -73,6 +95,7 @@ class OpenDataPropertySerializer(UniqueFieldsMixin, serializers.ModelSerializer)
 
 class OpenDataFoodPropertySerializer(WritableNestedModelSerializer):
     property = OpenDataPropertySerializer()
+    property_amount = CustomDecimalField()
 
     def create(self, validated_data):
         validated_data['created_by'] = self.context['request'].user
@@ -93,6 +116,12 @@ class OpenDataFoodSerializer(WritableNestedModelSerializer):
     properties = OpenDataFoodPropertySerializer(allow_null=True, many=True)
     properties_food_unit = OpenDataUnitSerializer()
 
+    def validate(self, data):
+        slug_prefix = 'food-'
+        if not data['slug'].startswith(slug_prefix):
+            raise serializers.ValidationError(f'Slug has to start with {slug_prefix}')
+        return super().validate(data)
+
     def create(self, validated_data):
         validated_data['created_by'] = self.context['request'].user
         return super().create(validated_data)
@@ -112,6 +141,14 @@ class OpenDataConversionSerializer(WritableNestedModelSerializer):
     food = OpenDataFoodSerializer()
     base_unit = OpenDataUnitSerializer()
     converted_unit = OpenDataUnitSerializer()
+    base_amount = CustomDecimalField()
+    converted_amount = CustomDecimalField()
+
+    def validate(self, data):
+        slug_prefix = 'conversion-'
+        if not data['slug'].startswith(slug_prefix):
+            raise serializers.ValidationError(f'Slug has to start with {slug_prefix}')
+        return super().validate(data)
 
     def create(self, validated_data):
         validated_data['created_by'] = self.context['request'].user

@@ -6,11 +6,22 @@
             <open-data-food-edit-component :show="show_modal" :object="selected_object"
                                            @hidden="finishAction"></open-data-food-edit-component>
         </template>
+        <template v-if="model.name === OpenDataModels.OPEN_DATA_STORE.name">
+            <open-data-store-edit-component :show="show_modal" :object="selected_object"
+                                            @hidden="finishAction"></open-data-store-edit-component>
+        </template>
         <template v-else>
             <generic-modal-form :model="model" :models="OpenDataModels" :action="modal_action" :show="show_modal"
                                 :item1="selected_object"
                                 @finish-action="finishAction"/>
         </template>
+
+        <b-form-group label="Search Name">
+            <b-input v-model="search_name"></b-input>
+        </b-form-group>
+        <b-form-group label="Search Slug">
+            <b-input v-model="search_slug"></b-input>
+        </b-form-group>
 
 
         <table class="table table-bordered table-striped">
@@ -21,7 +32,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr v-for="o in objects" v-bind:key="o.id">
+            <tr v-for="o in filtered_objects" v-bind:key="o.id">
                 <td v-for="f in model.table_fields" v-bind:key="`${o.id}_${f}`">{{ o[f] }}</td>
                 <td>
                     <b-button-group>
@@ -50,10 +61,11 @@ import OpenDataFoodEditComponent from "./OpenDataFoodEditComponent.vue";
 import GenericModalForm from "../../../../../../vue/src/components/Modals/GenericModalForm.vue";
 import {ModelMixin} from "../utils/models";
 import {Actions} from "../../../../../../vue/src/utils/models";
+import OpenDataStoreEditComponent from "./OpenDataStoreEditComponent.vue";
 
 export default {
     name: "OpenDataListComponent",
-    components: {GenericModalForm, OpenDataFoodEditComponent},
+    components: {GenericModalForm, OpenDataFoodEditComponent, OpenDataStoreEditComponent},
     mixins: [ApiMixin, ModelMixin],
     props: {
         model: {type: Object},
@@ -65,12 +77,18 @@ export default {
             selected_object: undefined,
             show_modal: false,
             modal_action: Actions.CREATE,
+            search_name: '',
+            search_slug: '',
         }
     },
     mounted() {
         this.loadData();
     },
-    computed: {},
+    computed: {
+        filtered_objects: function () {
+            return this.objects.filter(x => x.name.toLowerCase().includes(this.search_name.toLowerCase())).filter(x => x.slug.toLowerCase().includes(this.search_slug.toLowerCase()))
+        },
+    },
     watch: {
         model: function () {
             this.loadData()
