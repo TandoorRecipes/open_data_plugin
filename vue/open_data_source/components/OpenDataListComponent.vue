@@ -28,12 +28,14 @@
             <thead>
             <tr>
                 <th v-for="f in model.table_fields" v-bind:key="f">{{ f }}</th>
+                <th>Created By</th>
                 <th>Actions</th>
             </tr>
             </thead>
             <tbody>
             <tr v-for="o in filtered_objects" v-bind:key="o.id">
                 <td v-for="f in model.table_fields" v-bind:key="`${o.id}_${f}`">{{ o[f] }}</td>
+                <td>{{ o.created_by }}</td>
                 <td>
                     <b-button-group>
                         <b-button variant="success"
@@ -99,7 +101,8 @@ export default {
             this.genericAPI(this.model, this.Actions.LIST).then((result) => {
                 this.objects = result.data
             }).catch((err) => {
-                StandardToasts.makeStandardToast(this, StandardToasts.FAIL_CREATE, err)
+                this.objects = []
+                StandardToasts.makeStandardToast(this, StandardToasts.FAIL_FETCH, err, true)
             })
         },
         copyObject: function (o) {
@@ -111,7 +114,7 @@ export default {
             this.genericAPI(this.model, this.Actions.CREATE, o_copy).then((result) => {
                 this.loadData()
             }).catch((err) => {
-                StandardToasts.makeStandardToast(this, StandardToasts.FAIL_CREATE, err)
+                StandardToasts.makeStandardToast(this, StandardToasts.FAIL_CREATE, err, true)
             })
         },
         finishAction: function (e) {

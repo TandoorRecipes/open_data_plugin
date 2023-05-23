@@ -118,14 +118,14 @@ export default {
                     this.cancelAction()
                     StandardToasts.makeStandardToast(this, StandardToasts.SUCCESS_UPDATE)
                 }).catch((err) => {
-                    StandardToasts.makeStandardToast(this, StandardToasts.FAIL_CREATE, err)
+                    StandardToasts.makeStandardToast(this, StandardToasts.FAIL_CREATE, err, true)
                 })
             } else {
                 apiClient.createOpenDataStore(this.store).then(r => {
                     this.cancelAction()
                     StandardToasts.makeStandardToast(this, StandardToasts.SUCCESS_CREATE)
                 }).catch((err) => {
-                    StandardToasts.makeStandardToast(this, StandardToasts.FAIL_CREATE, err)
+                    StandardToasts.makeStandardToast(this, StandardToasts.FAIL_CREATE, err, true)
                 })
             }
         },
@@ -135,7 +135,7 @@ export default {
                 this.cancelAction()
                 StandardToasts.makeStandardToast(this, StandardToasts.SUCCESS_DELETE)
             }).catch((err) => {
-                StandardToasts.makeStandardToast(this, StandardToasts.FAIL_DELETE, err)
+                StandardToasts.makeStandardToast(this, StandardToasts.FAIL_DELETE, err, true)
             })
         },
         addCategory() {
