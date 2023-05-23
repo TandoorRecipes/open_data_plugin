@@ -11,6 +11,11 @@ export const ModelMixin = {
 
 export class OpenDataModels extends Models {
 
+    static OPEN_DATA_HOME = {
+        name: "OpenDataHome",
+        // Helper model
+    }
+
     static OPEN_DATA_VERSION = {
         name: "OpenDataVersion",
         apiName: "OpenDataVersion",

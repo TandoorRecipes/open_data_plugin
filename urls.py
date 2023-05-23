@@ -16,7 +16,7 @@ open_data_router.register(r'open-data-food', api.OpenDataFoodViewSet)
 open_data_router.register(r'open-data-FDC', api.FDCViewSet, basename='open-data-FDC')
 
 urlpatterns = [
-    path('', views.test, name='index'),
+    path('', views.test, name='open_data_index'),
 
 ]
 
