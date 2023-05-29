@@ -40,16 +40,17 @@ class OpenDataVersionViewSet(viewsets.ModelViewSet):
     serializer_class = OpenDataVersionSerializer
     permission_classes = [OpenDataIsModerator]
 
+
 class OpenDataUnitViewSet(viewsets.ModelViewSet):
     queryset = OpenDataUnit.objects.all()
     serializer_class = OpenDataUnitSerializer
-    permission_classes = [OpenDataIsOwner | OpenDataIsModerator | OpenDataIsVerified]
+    permission_classes = [OpenDataIsModerator | OpenDataIsVerified]
 
 
 class OpenDataCategoryViewSet(viewsets.ModelViewSet):
     queryset = OpenDataCategory.objects.all()
     serializer_class = OpenDataCategorySerializer
-    permission_classes = [OpenDataIsOwner | OpenDataIsModerator | OpenDataIsVerified]
+    permission_classes = [OpenDataIsModerator | OpenDataIsVerified]
 
 
 class OpenDataStoreViewSet(viewsets.ModelViewSet):
@@ -61,7 +62,7 @@ class OpenDataStoreViewSet(viewsets.ModelViewSet):
 class OpenDataPropertyViewSet(viewsets.ModelViewSet):
     queryset = OpenDataProperty.objects.all()
     serializer_class = OpenDataPropertySerializer
-    permission_classes = [OpenDataIsOwner | OpenDataIsModerator | OpenDataIsVerified]
+    permission_classes = [OpenDataIsModerator | OpenDataIsVerified]
 
 
 class OpenDataFoodViewSet(viewsets.ModelViewSet):

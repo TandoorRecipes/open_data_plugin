@@ -148,7 +148,7 @@ class OpenDataFoodPropertySerializer(WritableNestedModelSerializer):
         read_only_fields = ('id',)
 
 
-class OpenDataFoodSerializer(WritableNestedModelSerializer):
+class OpenDataFoodSerializer(UniqueFieldsMixin, WritableNestedModelSerializer):
     store_category = OpenDataCategorySerializer()
     preferred_unit_metric = OpenDataUnitSerializer()
     preferred_shopping_unit_metric = OpenDataUnitSerializer()

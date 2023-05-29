@@ -262,7 +262,7 @@ export class OpenDataModels extends Models {
         name: "OpenDataConversion",
         apiName: "OpenDataConversion",
         apiClient: new ApiApiFactory(),
-        table_fields: ["slug", "food", "base_unit", "converted_unit"],
+        table_fields: ["slug", "food.name", "base_unit.name", "converted_unit.name"],
         create: {
             params: [["version", "slug", "food", "base_amount", "base_unit", "converted_amount", "converted_unit", "source", "comment"]],
             form: {
@@ -274,6 +274,12 @@ export class OpenDataModels extends Models {
                     list: "OPEN_DATA_VERSION",
                     label: "Version",
                     allow_create: false,
+                },
+                slug: {
+                    form_field: true,
+                    type: "text",
+                    field: "slug",
+                    label: "Slug",
                 },
                 food: {
                     form_field: true,
