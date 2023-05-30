@@ -101,10 +101,11 @@ class FDCViewSet(viewsets.ViewSet):
                 parsed_data['properties_food_unit'] = {'id': unit_g.id, 'slug': unit_g.slug, 'name': unit_g.name, 'type': unit_g.type, }
 
             if OpenDataProperty.objects.filter(fdc_id__isnull=False).count() == 0:  # TODO better solution with cache
-                OpenDataProperty.objects.create(slug='property-calories', name='Calories', unit='kcal', fdc_id=1008, created_by=request.user)
-                OpenDataProperty.objects.create(slug='property-proteins', name='Proteins', unit='g', fdc_id=1003, created_by=request.user)
-                OpenDataProperty.objects.create(slug='property-carbohydrates', name='Carbohydrates', unit='g', fdc_id=1005, created_by=request.user)
-                OpenDataProperty.objects.create(slug='property-fats', name='Fats', unit='g', fdc_id=1004, created_by=request.user)
+                base_version = OpenDataVersion.objects.first()
+                OpenDataProperty.objects.create(slug='property-calories', name='Calories', unit='kcal', fdc_id=1008, created_by=request.user, version=base_version)
+                OpenDataProperty.objects.create(slug='property-proteins', name='Proteins', unit='g', fdc_id=1003, created_by=request.user, version=base_version)
+                OpenDataProperty.objects.create(slug='property-carbohydrates', name='Carbohydrates', unit='g', fdc_id=1005, created_by=request.user, version=base_version)
+                OpenDataProperty.objects.create(slug='property-fats', name='Fats', unit='g', fdc_id=1004, created_by=request.user, version=base_version)
 
             for fn in data['foodNutrients']:
                 if fn['nutrient']['id'] == 1008:
