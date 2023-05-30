@@ -98,7 +98,8 @@ class FDCViewSet(viewsets.ViewSet):
 
             unit_g = OpenDataUnit.objects.filter(base_unit='G').first()
             if unit_g:
-                parsed_data['properties_food_unit'] = {'id': unit_g.id, 'slug': unit_g.slug, 'name': unit_g.name, 'type': unit_g.type, }
+                parsed_data['properties_food_unit'] = {'id': unit_g.id, 'slug': unit_g.slug, 'name': unit_g.name, 'plural_name': unit_g.plural_name, 'type': unit_g.type,
+                                                       'version': {'id': unit_g.version.id, 'name': unit_g.version.name, 'code': unit_g.version.code}}
 
             if OpenDataProperty.objects.filter(fdc_id__isnull=False).count() == 0:  # TODO better solution with cache
                 base_version = OpenDataVersion.objects.first()
@@ -110,16 +111,16 @@ class FDCViewSet(viewsets.ViewSet):
             for fn in data['foodNutrients']:
                 if fn['nutrient']['id'] == 1008:
                     p = OpenDataProperty.objects.get(fdc_id=1008)
-                    parsed_data['properties'].append({"property": {'id': p.id, 'slug': p.slug, 'name': p.name}, "property_amount": round(fn['amount'], 2)})
+                    parsed_data['properties'].append({"property": {'id': p.id, 'slug': p.slug, 'name': p.name, 'version': {'id': p.version.id, 'name': p.version.name, 'code': p.version.code}}, "property_amount": round(fn['amount'], 2)})
                 if fn['nutrient']['id'] == 1003:
                     p = OpenDataProperty.objects.get(fdc_id=1003)
-                    parsed_data['properties'].append({"property": {'id': p.id, 'slug': p.slug, 'name': p.name}, "property_amount": round(fn['amount'], 2)})
+                    parsed_data['properties'].append({"property": {'id': p.id, 'slug': p.slug, 'name': p.name, 'version': {'id': p.version.id, 'name': p.version.name, 'code': p.version.code}}, "property_amount": round(fn['amount'], 2)})
                 if fn['nutrient']['id'] == 1005:
                     p = OpenDataProperty.objects.get(fdc_id=1005)
-                    parsed_data['properties'].append({"property": {'id': p.id, 'slug': p.slug, 'name': p.name}, "property_amount": round(fn['amount'], 2)})
+                    parsed_data['properties'].append({"property": {'id': p.id, 'slug': p.slug, 'name': p.name, 'version': {'id': p.version.id, 'name': p.version.name, 'code': p.version.code}}, "property_amount": round(fn['amount'], 2)})
                 if fn['nutrient']['id'] == 1004:
                     p = OpenDataProperty.objects.get(fdc_id=1004)
-                    parsed_data['properties'].append({"property": {'id': p.id, 'slug': p.slug, 'name': p.name}, "property_amount": round(fn['amount'], 2)})
+                    parsed_data['properties'].append({"property": {'id': p.id, 'slug': p.slug, 'name': p.name, 'version': {'id': p.version.id, 'name': p.version.name, 'code': p.version.code}}, "property_amount": round(fn['amount'], 2)})
 
             return JsonResponse(parsed_data, json_dumps_params={'indent': 4})
         except Exception as e:
