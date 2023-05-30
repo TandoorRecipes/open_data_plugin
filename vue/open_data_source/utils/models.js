@@ -232,6 +232,13 @@ export class OpenDataModels extends Models {
                     label: "Unit",
                     placeholder: "",
                 },
+                fdc_id: {
+                    form_field: true,
+                    type: "text",
+                    field: "fdc_id",
+                    label: "fdc_id",
+                    placeholder: "",
+                },
                 comment: {
                     form_field: true,
                     type: "text",

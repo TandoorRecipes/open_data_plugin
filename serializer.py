@@ -130,7 +130,7 @@ class OpenDataPropertySerializer(UniqueFieldsMixin, WritableNestedModelSerialize
 
     class Meta:
         model = OpenDataProperty
-        fields = ('id', 'version', 'slug', 'name', 'unit', 'comment', 'created_by',)
+        fields = ('id', 'version', 'slug', 'name', 'unit', 'fdc_id', 'comment', 'created_by',)
         read_only_fields = ('id', 'created_by',)
 
 
