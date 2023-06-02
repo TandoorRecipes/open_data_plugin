@@ -73,7 +73,7 @@ class OpenDataCategorySerializer(UniqueFieldsMixin, WritableNestedModelSerialize
 
     class Meta:
         model = OpenDataCategory
-        fields = ('id', 'version', 'slug', 'name', 'comment', 'created_by',)
+        fields = ('id', 'version', 'slug', 'name', 'description', 'comment', 'created_by',)
         read_only_fields = ('id', 'created_by',)
 
 

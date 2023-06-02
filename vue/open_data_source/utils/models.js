@@ -144,7 +144,7 @@ export class OpenDataModels extends Models {
         apiClient: new ApiApiFactory(),
         table_fields: ["slug", "name"],
         create: {
-            params: [["version", "slug", "name", "comment",]],
+            params: [["version", "slug", "name", "description","comment",]],
             form: {
                 show_help: true,
                 version: {
@@ -166,6 +166,13 @@ export class OpenDataModels extends Models {
                     type: "text",
                     field: "name",
                     label: "Name",
+                    placeholder: "",
+                },
+                description: {
+                    form_field: true,
+                    type: "text",
+                    field: "description",
+                    label: "Description",
                     placeholder: "",
                 },
                 comment: {
