@@ -87,6 +87,7 @@ class FDCViewSet(viewsets.ViewSet):
             data = json.loads(response.content)
 
             parsed_data = {
+                'version': {'id': 1, 'name': 'base', 'code': 'base'},
                 'slug': f"food-{data['description'].lower().replace(' ', '-').replace(',', '')}",
                 'name': data['description'],
                 'plural_name': data['description'],

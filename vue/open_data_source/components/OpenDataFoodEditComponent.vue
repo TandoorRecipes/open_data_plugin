@@ -52,35 +52,35 @@
                                 :multiple="false"/>
                         </b-form-group>
 
-                        <b-form-group :label="$t('preferred_unit_metric')" description="">
-                            <generic-multiselect
-                                @change="food.preferred_unit_metric = $event.val"
-                                :initial_single_selection="food.preferred_unit_metric"
-                                label="name" :model="OpenDataModels.OPEN_DATA_UNIT"
-                                :multiple="false"/>
-                        </b-form-group>
+<!--                        <b-form-group :label="$t('preferred_unit_metric')" description="">-->
+<!--                            <generic-multiselect-->
+<!--                                @change="food.preferred_unit_metric = $event.val"-->
+<!--                                :initial_single_selection="food.preferred_unit_metric"-->
+<!--                                label="name" :model="OpenDataModels.OPEN_DATA_UNIT"-->
+<!--                                :multiple="false"/>-->
+<!--                        </b-form-group>-->
 
-                        <b-form-group :label="$t('preferred_shopping_unit_metric')" description="">
-                            <generic-multiselect
-                                @change="food.preferred_shopping_unit_metric = $event.val"
-                                :initial_single_selection="food.preferred_shopping_unit_metric"
-                                label="name" :model="OpenDataModels.OPEN_DATA_UNIT"
-                                :multiple="false"/>
-                        </b-form-group>
-                        <b-form-group :label="$t('preferred_unit_imperial')" description="">
-                            <generic-multiselect
-                                @change="food.preferred_unit_imperial = $event.val"
-                                :initial_single_selection="food.preferred_unit_imperial"
-                                label="name" :model="OpenDataModels.OPEN_DATA_UNIT"
-                                :multiple="false"/>
-                        </b-form-group>
-                        <b-form-group :label="$t('preferred_shopping_unit_imperial')" description="">
-                            <generic-multiselect
-                                @change="food.preferred_shopping_unit_imperial = $event.val"
-                                :initial_single_selection="food.preferred_shopping_unit_imperial"
-                                label="name" :model="OpenDataModels.OPEN_DATA_UNIT"
-                                :multiple="false"/>
-                        </b-form-group>
+<!--                        <b-form-group :label="$t('preferred_shopping_unit_metric')" description="">-->
+<!--                            <generic-multiselect-->
+<!--                                @change="food.preferred_shopping_unit_metric = $event.val"-->
+<!--                                :initial_single_selection="food.preferred_shopping_unit_metric"-->
+<!--                                label="name" :model="OpenDataModels.OPEN_DATA_UNIT"-->
+<!--                                :multiple="false"/>-->
+<!--                        </b-form-group>-->
+<!--                        <b-form-group :label="$t('preferred_unit_imperial')" description="">-->
+<!--                            <generic-multiselect-->
+<!--                                @change="food.preferred_unit_imperial = $event.val"-->
+<!--                                :initial_single_selection="food.preferred_unit_imperial"-->
+<!--                                label="name" :model="OpenDataModels.OPEN_DATA_UNIT"-->
+<!--                                :multiple="false"/>-->
+<!--                        </b-form-group>-->
+<!--                        <b-form-group :label="$t('preferred_shopping_unit_imperial')" description="">-->
+<!--                            <generic-multiselect-->
+<!--                                @change="food.preferred_shopping_unit_imperial = $event.val"-->
+<!--                                :initial_single_selection="food.preferred_shopping_unit_imperial"-->
+<!--                                label="name" :model="OpenDataModels.OPEN_DATA_UNIT"-->
+<!--                                :multiple="false"/>-->
+<!--                        </b-form-group>-->
 
                         <b-form-group :label="$t('Properties Food Amount')" description="">
                             <b-form-input rows="3" v-model="food.properties_food_amount"></b-form-input>

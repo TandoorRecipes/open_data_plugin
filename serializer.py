@@ -150,10 +150,10 @@ class OpenDataFoodPropertySerializer(WritableNestedModelSerializer):
 
 class OpenDataFoodSerializer(UniqueFieldsMixin, WritableNestedModelSerializer):
     store_category = OpenDataCategorySerializer()
-    preferred_unit_metric = OpenDataUnitSerializer()
-    preferred_shopping_unit_metric = OpenDataUnitSerializer()
-    preferred_unit_imperial = OpenDataUnitSerializer()
-    preferred_shopping_unit_imperial = OpenDataUnitSerializer()
+    preferred_unit_metric = OpenDataUnitSerializer(allow_null=True, required=False)
+    preferred_shopping_unit_metric = OpenDataUnitSerializer(allow_null=True, required=False)
+    preferred_unit_imperial = OpenDataUnitSerializer(allow_null=True, required=False)
+    preferred_shopping_unit_imperial = OpenDataUnitSerializer(allow_null=True, required=False)
     properties = OpenDataFoodPropertySerializer(allow_null=True, many=True)
     properties_food_unit = OpenDataUnitSerializer()
     created_by = serializers.SerializerMethodField('get_created_by_name')
