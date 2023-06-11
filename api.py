@@ -70,6 +70,45 @@ class OpenDataFoodViewSet(viewsets.ModelViewSet):
     serializer_class = OpenDataFoodSerializer
     permission_classes = [OpenDataIsOwner | OpenDataIsModerator | OpenDataIsVerified]
 
+    def get_queryset(self):
+        self.queryset = self.queryset.prefetch_related(
+            'version',
+            'created_by',
+
+            'store_category',
+            'store_category__version',
+            'store_category__created_by',
+
+            'preferred_unit_metric',
+            'preferred_unit_metric__version',
+            'preferred_unit_metric__created_by',
+
+            'preferred_shopping_unit_metric',
+            'preferred_shopping_unit_metric__version',
+            'preferred_shopping_unit_metric__created_by',
+
+            'preferred_unit_imperial',
+            'preferred_unit_imperial__version',
+            'preferred_unit_imperial__created_by',
+
+            'preferred_shopping_unit_imperial',
+            'preferred_shopping_unit_imperial__version',
+            'preferred_shopping_unit_imperial__created_by',
+
+            'properties',
+            'properties__created_by',
+
+            'properties__property',
+            'properties__property__version',
+            'properties__property__created_by',
+
+            'properties_food_unit',
+            'properties_food_unit__version',
+            'properties_food_unit__created_by',
+
+        )
+        return self.queryset
+
 
 class OpenDataConversionViewSet(viewsets.ModelViewSet):
     queryset = OpenDataConversion.objects.all()
