@@ -29,7 +29,7 @@
                                 <b-form-input v-model="food.fdc_id"></b-form-input>
 
                                 <b-input-group-append>
-                                    <b-button variant="primary" @click="loadFDCData">LOAD FDC</b-button>
+                                    <b-button variant="primary" @click="loadFDCData" :disabled="fdc_loading">LOAD FDC <i class="fas fa-spinner fa-spin" v-if="fdc_loading"></i></b-button>
                                 </b-input-group-append>
                             </b-input-group>
                         </b-form-group>
@@ -156,7 +156,8 @@ export default {
     },
     data() {
         return {
-            food: undefined
+            food: undefined,
+            fdc_loading: false,
         }
     },
     mounted() {
@@ -230,12 +231,15 @@ export default {
         },
         loadFDCData: function () {
             let apiClient = new ApiApiFactory()
+            this.fdc_loading = true
             apiClient.retrieveFDCViewSet(this.food.fdc_id).then(r => {
                 console.log(r.data)
                 this.food = r.data
+                this.fdc_loading = false
                 StandardToasts.makeStandardToast(this, StandardToasts.SUCCESS_FETCH)
             }).catch((err) => {
                 StandardToasts.makeStandardToast(this, StandardToasts.FAIL_FETCH, err, true)
+                this.fdc_loading = false
             })
         },
         cancelAction: function () {

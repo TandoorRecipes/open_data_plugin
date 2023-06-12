@@ -118,6 +118,7 @@ class OpenDataConversionViewSet(viewsets.ModelViewSet):
 
 class FDCViewSet(viewsets.ViewSet):
     def retrieve(self, request, pk=None):
+        pk = pk.strip()
         response = requests.get(f'https://api.nal.usda.gov/fdc/v1/food/{pk}?api_key={FDA_API_KEY}')
         if response.status_code == 429:
             return JsonResponse({'error', 'API Key Rate Limit reached/exceeded, see https://api.data.gov/docs/rate-limits/ for more information'}, status=429, json_dumps_params={'indent': 4})
@@ -161,6 +162,11 @@ class FDCViewSet(viewsets.ViewSet):
                 if fn['nutrient']['id'] == 1004:
                     p = OpenDataProperty.objects.get(fdc_id=1004)
                     parsed_data['properties'].append({"property": {'id': p.id, 'slug': p.slug, 'name': p.name, 'version': {'id': p.version.id, 'name': p.version.name, 'code': p.version.code}}, "property_amount": round(fn['amount'], 2)})
+
+            try:
+                parsed_data['comment'] = f"FDC Measure: 1 {data['foodPortions'][0]['measureUnit']['name']} = {data['foodPortions'][0]['gramWeight']} gram (#{data['foodPortions'][0]['id']} {data['foodPortions'][0]['minDateAcquired']})"
+            except:
+                pass
 
             return JsonResponse(parsed_data, json_dumps_params={'indent': 4})
         except Exception as e:
