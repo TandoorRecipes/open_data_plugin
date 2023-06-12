@@ -1,9 +1,23 @@
+import re
+
 from django.db.models import Q
 from drf_writable_nested import WritableNestedModelSerializer, UniqueFieldsMixin
 from rest_framework import serializers
 
 from cookbook.serializer import CustomDecimalField
 from recipes.plugins.open_data_plugin.models import OpenDataUnit, OpenDataFood, OpenDataCategory, OpenDataStore, OpenDataProperty, OpenDataStoreCategory, OpenDataConversion, OpenDataFoodProperty, OpenDataVersion
+
+
+def slug_validator(slug, prefix):
+    if not re.fullmatch(r"(([a-z0-9])+(\-)*)+", slug):
+        raise serializers.ValidationError(f'Slugs can only contain lower case characters and numbers connected with -')
+    if not slug.startswith(prefix):
+        raise serializers.ValidationError(f'Slug has to start with {prefix}')
+
+
+def string_validator(input_string):
+    if not re.fullmatch(r"([A-z0-9\-\(\)\&\s])+", input_string):
+        raise serializers.ValidationError(f"<{input_string}> contains invalid characters (only A-z,0-9,-,(,),& and whitespace allowed) ")
 
 
 class OpenDataVersionSerializer(UniqueFieldsMixin, serializers.ModelSerializer):
@@ -29,9 +43,9 @@ class OpenDataUnitSerializer(UniqueFieldsMixin, WritableNestedModelSerializer):
         return obj.created_by.username
 
     def validate(self, data):
-        slug_prefix = 'unit-'
-        if not data['slug'].startswith(slug_prefix):
-            raise serializers.ValidationError(f'Slug has to start with {slug_prefix}')
+        slug_validator(data['slug'], 'unit-')
+        string_validator(data['name'])
+        string_validator(data['plural_name'])
         return super().validate(data)
 
     def create(self, validated_data):
@@ -57,9 +71,8 @@ class OpenDataCategorySerializer(UniqueFieldsMixin, WritableNestedModelSerialize
         return obj.created_by.username
 
     def validate(self, data):
-        slug_prefix = 'category-'
-        if not data['slug'].startswith(slug_prefix):
-            raise serializers.ValidationError(f'Slug has to start with {slug_prefix}')
+        slug_validator(data['slug'], 'category-')
+        string_validator(data['name'])
         return super().validate(data)
 
     def create(self, validated_data):
@@ -94,9 +107,8 @@ class OpenDataStoreSerializer(WritableNestedModelSerializer):
         return obj.created_by.username
 
     def validate(self, data):
-        slug_prefix = 'store-'
-        if not data['slug'].startswith(slug_prefix):
-            raise serializers.ValidationError(f'Slug has to start with {slug_prefix}')
+        slug_validator(data['slug'], 'store-')
+        string_validator(data['name'])
         return super().validate(data)
 
     def create(self, validated_data):
@@ -117,9 +129,8 @@ class OpenDataPropertySerializer(UniqueFieldsMixin, WritableNestedModelSerialize
         return obj.created_by.username
 
     def validate(self, data):
-        slug_prefix = 'property-'
-        if not data['slug'].startswith(slug_prefix):
-            raise serializers.ValidationError(f'Slug has to start with {slug_prefix}')
+        slug_validator(data['slug'], 'property-')
+        string_validator(data['name'])
         return super().validate(data)
 
     def create(self, validated_data):
@@ -163,9 +174,9 @@ class OpenDataFoodSerializer(UniqueFieldsMixin, WritableNestedModelSerializer):
         return obj.created_by.username
 
     def validate(self, data):
-        slug_prefix = 'food-'
-        if not data['slug'].startswith(slug_prefix):
-            raise serializers.ValidationError(f'Slug has to start with {slug_prefix}')
+        slug_validator(data['slug'], 'food-')
+        string_validator(data['name'])
+        string_validator(data['plural_name'])
         return super().validate(data)
 
     def create(self, validated_data):
@@ -196,9 +207,7 @@ class OpenDataConversionSerializer(WritableNestedModelSerializer):
         return obj.created_by.username
 
     def validate(self, data):
-        slug_prefix = 'conversion-'
-        if not data['slug'].startswith(slug_prefix):
-            raise serializers.ValidationError(f'Slug has to start with {slug_prefix}')
+        slug_validator(data['slug'], 'conversion-')
         return super().validate(data)
 
     def create(self, validated_data):
