@@ -1,7 +1,9 @@
+import datetime
 import json
 import traceback
 
 import requests
+from django.db.models import Count
 from django.http import JsonResponse
 from rest_framework import viewsets, permissions
 from rest_framework.permissions import SAFE_METHODS
@@ -172,3 +174,43 @@ class FDCViewSet(viewsets.ViewSet):
         except Exception as e:
             traceback.print_exc()
             return JsonResponse({'error': f'{e} - check server log'}, status=500, json_dumps_params={'indent': 4})
+
+
+class OpenDataStatisticsViewSet(viewsets.ViewSet):
+
+    def list(self, request):
+        stats = {
+            'food_stats_total': [],
+            'conversion_stats_total': [],
+            'food_stats_last_30': [],
+            'conversion_stats_last_30': [],
+            'object_counts': {
+                'food': OpenDataFood.objects.all().count(),
+                'unit': OpenDataUnit.objects.all().count(),
+                'conversion': OpenDataConversion.objects.all().count(),
+                'category': OpenDataCategory.objects.all().count(),
+                'store': OpenDataStore.objects.all().count(),
+                'property': OpenDataProperty.objects.all().count(),
+                'version': OpenDataVersion.objects.all().count(),
+            },
+        }
+
+        food_stats_total = OpenDataFood.objects.all().values('created_by__username').annotate(total=Count('created_by')).order_by('total')[:3]
+        conversion_stats_total = OpenDataConversion.objects.all().values('created_by__username').annotate(total=Count('created_by')).order_by('total')[:3]
+
+        for f in food_stats_total:
+            stats['food_stats_total'].append({'username': f['created_by__username'], 'count': f['total']})
+
+        for f in conversion_stats_total:
+            stats['conversion_stats_total'].append({'username': f['created_by__username'], 'count': f['total']})
+
+        food_stats_last_30 = OpenDataFood.objects.filter(created_at__gt=datetime.datetime.today()-datetime.timedelta(days=30)).all().values('created_by__username').annotate(total=Count('created_by')).order_by('total')[:3]
+        conversion_stats_last_30 = OpenDataConversion.objects.filter(created_at__gt=datetime.datetime.today()-datetime.timedelta(days=30)).all().values('created_by__username').annotate(total=Count('created_by')).order_by('total')[:3]
+
+        for f in food_stats_last_30:
+            stats['food_stats_last_30'].append({'username': f['created_by__username'], 'count': f['total']})
+
+        for f in conversion_stats_last_30:
+            stats['conversion_stats_last_30'].append({'username': f['created_by__username'], 'count': f['total']})
+
+        return JsonResponse(stats, json_dumps_params={'indent': 4})
