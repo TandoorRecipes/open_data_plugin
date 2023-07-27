@@ -2,6 +2,8 @@ from django.apps import AppConfig
 
 
 class OpenDataConfig(AppConfig):
+    VERSION = '0.2.0'
+
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'recipes.plugins.open_data_plugin'
     verbose_name = 'Tandoor Open Data'
