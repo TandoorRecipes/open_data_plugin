@@ -3,6 +3,8 @@ from django.apps import AppConfig
 
 class OpenDataConfig(AppConfig):
     VERSION = '0.2.0'
+    website = 'https://github.com/TandoorRecipes/open_data_plugin'
+    github = 'https://github.com/TandoorRecipes/open_data_plugin'
 
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'recipes.plugins.open_data_plugin'
