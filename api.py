@@ -195,8 +195,8 @@ class OpenDataStatisticsViewSet(viewsets.ViewSet):
             },
         }
 
-        food_stats_total = OpenDataFood.objects.all().values('created_by__username').annotate(total=Count('created_by')).order_by('total')[:3]
-        conversion_stats_total = OpenDataConversion.objects.all().values('created_by__username').annotate(total=Count('created_by')).order_by('total')[:3]
+        food_stats_total = OpenDataFood.objects.all().values('created_by__username').annotate(total=Count('created_by')).order_by('-total')[:3]
+        conversion_stats_total = OpenDataConversion.objects.all().values('created_by__username').annotate(total=Count('created_by')).order_by('-total')[:3]
 
         for f in food_stats_total:
             stats['food_stats_total'].append({'username': f['created_by__username'], 'count': f['total']})
@@ -204,8 +204,8 @@ class OpenDataStatisticsViewSet(viewsets.ViewSet):
         for f in conversion_stats_total:
             stats['conversion_stats_total'].append({'username': f['created_by__username'], 'count': f['total']})
 
-        food_stats_last_30 = OpenDataFood.objects.filter(created_at__gt=datetime.datetime.today()-datetime.timedelta(days=30)).all().values('created_by__username').annotate(total=Count('created_by')).order_by('total')[:3]
-        conversion_stats_last_30 = OpenDataConversion.objects.filter(created_at__gt=datetime.datetime.today()-datetime.timedelta(days=30)).all().values('created_by__username').annotate(total=Count('created_by')).order_by('total')[:3]
+        food_stats_last_30 = OpenDataFood.objects.filter(created_at__gt=datetime.datetime.today()-datetime.timedelta(days=30)).all().values('created_by__username').annotate(total=Count('created_by')).order_by('-total')[:3]
+        conversion_stats_last_30 = OpenDataConversion.objects.filter(created_at__gt=datetime.datetime.today()-datetime.timedelta(days=30)).all().values('created_by__username').annotate(total=Count('created_by')).order_by('-total')[:3]
 
         for f in food_stats_last_30:
             stats['food_stats_last_30'].append({'username': f['created_by__username'], 'count': f['total']})
