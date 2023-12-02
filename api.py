@@ -10,7 +10,7 @@ from rest_framework.permissions import SAFE_METHODS
 
 from recipes.plugins.open_data_plugin.models import OpenDataUnit, OpenDataFood, OpenDataCategory, OpenDataStore, OpenDataProperty, OpenDataConversion, OpenDataVersion
 from recipes.plugins.open_data_plugin.serializer import OpenDataUnitSerializer, OpenDataFoodSerializer, OpenDataCategorySerializer, OpenDataStoreSerializer, OpenDataPropertySerializer, OpenDataConversionSerializer, OpenDataVersionSerializer
-from recipes.settings import FDA_API_KEY
+from recipes.settings import FDC_API_KEY
 
 
 class OpenDataIsOwner(permissions.BasePermission):
@@ -121,7 +121,7 @@ class OpenDataConversionViewSet(viewsets.ModelViewSet):
 class FDCViewSet(viewsets.ViewSet):
     def retrieve(self, request, pk=None):
         pk = pk.strip()
-        response = requests.get(f'https://api.nal.usda.gov/fdc/v1/food/{pk}?api_key={FDA_API_KEY}')
+        response = requests.get(f'https://api.nal.usda.gov/fdc/v1/food/{pk}?api_key={FDC_API_KEY}')
         if response.status_code == 429:
             return JsonResponse({'error', 'API Key Rate Limit reached/exceeded, see https://api.data.gov/docs/rate-limits/ for more information'}, status=429, json_dumps_params={'indent': 4})
 
