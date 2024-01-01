@@ -111,7 +111,7 @@ class OpenDataFood(OpenDataBaseModel):
     properties_food_unit = models.ForeignKey(OpenDataUnit, on_delete=models.PROTECT, blank=True, null=True)
     properties_source = models.TextField(blank=True)
 
-    fdc_id = models.CharField(max_length=128, unique=True)
+    fdc_id = models.CharField(max_length=128, unique=False)
 
     # TODO add alias support
 
