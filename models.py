@@ -129,3 +129,8 @@ class OpenDataConversion(OpenDataBaseModel):
 
     def __str__(self):
         return f'{self.food} {self.base_unit} -> {self.converted_unit}'
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['base_unit', 'converted_unit', 'food'], name='f_unique_conversion_per_food')
+        ]
