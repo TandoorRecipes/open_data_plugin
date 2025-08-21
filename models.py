@@ -111,7 +111,7 @@ class OpenDataFood(OpenDataBaseModel):
     properties_food_unit = models.ForeignKey(OpenDataUnit, on_delete=models.PROTECT, blank=True, null=True)
     properties_source = models.TextField(blank=True)
 
-    fdc_id = models.CharField(max_length=128, unique=True)
+    fdc_id = models.CharField(max_length=128, unique=False)
 
     # TODO add alias support
 
@@ -129,3 +129,8 @@ class OpenDataConversion(OpenDataBaseModel):
 
     def __str__(self):
         return f'{self.food} {self.base_unit} -> {self.converted_unit}'
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['base_unit', 'converted_unit', 'food'], name='f_unique_conversion_per_food')
+        ]

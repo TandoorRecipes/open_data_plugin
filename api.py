@@ -10,7 +10,7 @@ from rest_framework.permissions import SAFE_METHODS
 
 from recipes.plugins.open_data_plugin.models import OpenDataUnit, OpenDataFood, OpenDataCategory, OpenDataStore, OpenDataProperty, OpenDataConversion, OpenDataVersion
 from recipes.plugins.open_data_plugin.serializer import OpenDataUnitSerializer, OpenDataFoodSerializer, OpenDataCategorySerializer, OpenDataStoreSerializer, OpenDataPropertySerializer, OpenDataConversionSerializer, OpenDataVersionSerializer
-from recipes.settings import FDA_API_KEY
+from recipes.settings import FDC_API_KEY
 
 
 class OpenDataIsOwner(permissions.BasePermission):
@@ -121,7 +121,7 @@ class OpenDataConversionViewSet(viewsets.ModelViewSet):
 class FDCViewSet(viewsets.ViewSet):
     def retrieve(self, request, pk=None):
         pk = pk.strip()
-        response = requests.get(f'https://api.nal.usda.gov/fdc/v1/food/{pk}?api_key={FDA_API_KEY}')
+        response = requests.get(f'https://api.nal.usda.gov/fdc/v1/food/{pk}?api_key={FDC_API_KEY}')
         if response.status_code == 429:
             return JsonResponse({'error', 'API Key Rate Limit reached/exceeded, see https://api.data.gov/docs/rate-limits/ for more information'}, status=429, json_dumps_params={'indent': 4})
 
@@ -195,8 +195,8 @@ class OpenDataStatisticsViewSet(viewsets.ViewSet):
             },
         }
 
-        food_stats_total = OpenDataFood.objects.all().values('created_by__username').annotate(total=Count('created_by')).order_by('total')[:3]
-        conversion_stats_total = OpenDataConversion.objects.all().values('created_by__username').annotate(total=Count('created_by')).order_by('total')[:3]
+        food_stats_total = OpenDataFood.objects.all().values('created_by__username').annotate(total=Count('created_by')).order_by('-total')[:3]
+        conversion_stats_total = OpenDataConversion.objects.all().values('created_by__username').annotate(total=Count('created_by')).order_by('-total')[:3]
 
         for f in food_stats_total:
             stats['food_stats_total'].append({'username': f['created_by__username'], 'count': f['total']})
@@ -204,8 +204,8 @@ class OpenDataStatisticsViewSet(viewsets.ViewSet):
         for f in conversion_stats_total:
             stats['conversion_stats_total'].append({'username': f['created_by__username'], 'count': f['total']})
 
-        food_stats_last_30 = OpenDataFood.objects.filter(created_at__gt=datetime.datetime.today()-datetime.timedelta(days=30)).all().values('created_by__username').annotate(total=Count('created_by')).order_by('total')[:3]
-        conversion_stats_last_30 = OpenDataConversion.objects.filter(created_at__gt=datetime.datetime.today()-datetime.timedelta(days=30)).all().values('created_by__username').annotate(total=Count('created_by')).order_by('total')[:3]
+        food_stats_last_30 = OpenDataFood.objects.filter(created_at__gt=datetime.datetime.today()-datetime.timedelta(days=30)).all().values('created_by__username').annotate(total=Count('created_by')).order_by('-total')[:3]
+        conversion_stats_last_30 = OpenDataConversion.objects.filter(created_at__gt=datetime.datetime.today()-datetime.timedelta(days=30)).all().values('created_by__username').annotate(total=Count('created_by')).order_by('-total')[:3]
 
         for f in food_stats_last_30:
             stats['food_stats_last_30'].append({'username': f['created_by__username'], 'count': f['total']})
