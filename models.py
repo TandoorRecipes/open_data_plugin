@@ -40,11 +40,27 @@ class OpenDataUnit(OpenDataBaseModel):
     name = models.CharField(max_length=128, unique=True)
     plural_name = models.CharField(max_length=128, unique=True, blank=True)
     base_unit = models.CharField(max_length=128, blank=True,
-                                 choices=(('G', 'g'), ('KG', 'kg'), ('ML', 'ml'), ('L', 'l'), ('OUNCE', 'ounce'),
-                                          ('POUND', 'pound'), ('FLUID_OUNCE', 'fluid_ounce'), ('TSP', 'tsp'), ('TBSP', 'tbsp'), ('CUP', 'cup'),
-                                          ('PINT', 'pint'), ('QUART', 'quart'), ('GALLON', 'gallon'), ('IMPERIAL_FLUID_OUNCE', 'imperial fluid ounce'),
-                                          ('IMPERIAL_PINT', 'imperial pint'), ('IMPERIAL_QUART', 'imperial quart'), ('IMPERIAL_GALLON', 'imperial gallon'),)
-                                 )
+                                 choices=(
+                                     ('g', 'g'),
+                                     ('kg', 'kg'),
+                                     ('ounce', 'ounce'),
+                                     ('pound', 'pound'),
+                                     ('ml', 'ml'),
+                                     ('l', 'l'),
+                                     ('fluid_ounce', 'fluid_ounce'),
+                                     ('pint', 'pint'),
+                                     ('quart', 'quart'),
+                                     ('gallon', 'gallon'),
+                                     ('tbsp', 'tbsp'),
+                                     ('tsp', 'tsp'),
+                                     ('us_cup', 'US Cup'),
+                                     ('imperial_fluid_ounce', 'imperial fluid ounce'),
+                                     ('imperial_pint', 'imperial pint'),
+                                     ('imperial_quart', 'imperial quart'),
+                                     ('imperial_gallon', 'imperial gallon'),
+                                     ('imperial_tbsp', 'imperial tbsp'),
+                                     ('imperial_tsp', 'imperial tsp'),
+                                 ))
     type = models.CharField(max_length=128, choices=(('WEIGHT', 'weight'), ('VOLUME', 'volume'), ('OTHER', 'other'),))
 
     def __str__(self):
@@ -104,14 +120,15 @@ class OpenDataFood(OpenDataBaseModel):
     preferred_unit_metric = models.ForeignKey(OpenDataUnit, on_delete=models.PROTECT, null=True, blank=True, default=None, related_name='preferred_unit_metric')
     preferred_shopping_unit_metric = models.ForeignKey(OpenDataUnit, on_delete=models.PROTECT, null=True, blank=True, default=None, related_name='preferred_shopping_unit_metric')
     preferred_unit_imperial = models.ForeignKey(OpenDataUnit, on_delete=models.PROTECT, null=True, blank=True, default=None, related_name='preferred_unit_imperial')
-    preferred_shopping_unit_imperial = models.ForeignKey(OpenDataUnit, on_delete=models.PROTECT, null=True, blank=True, default=None, related_name='preferred_shopping_unit_imperial')
+    preferred_shopping_unit_imperial = models.ForeignKey(OpenDataUnit, on_delete=models.PROTECT, null=True, blank=True, default=None,
+                                                         related_name='preferred_shopping_unit_imperial')
     properties = models.ManyToManyField(OpenDataFoodProperty, blank=True)
 
     properties_food_amount = models.IntegerField(default=100, blank=True)
     properties_food_unit = models.ForeignKey(OpenDataUnit, on_delete=models.PROTECT, blank=True, null=True)
     properties_source = models.TextField(blank=True)
 
-    fdc_id = models.CharField(max_length=128, unique=False)
+    fdc_id = models.IntegerField(null=True, default=None, blank=True)
 
     # TODO add alias support
 

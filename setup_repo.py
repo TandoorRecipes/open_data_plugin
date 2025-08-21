@@ -7,25 +7,16 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
-VUE_BASE_PATH = os.path.join(BASE_DIR, 'vue')
-PLUGIN_VUE_BASE_PATH = os.path.join(BASE_DIR, 'recipes', 'plugins', 'open_data_plugin', 'vue')
+VUE_BASE_PATH = os.path.join(BASE_DIR, 'vue3', 'src', 'plugins')
+PLUGIN_VUE_BASE_PATH = os.path.join(BASE_DIR, 'recipes', 'plugins', 'open_data_plugin', 'frontend')
 
 print(f'LINKING FROM {VUE_BASE_PATH} to {PLUGIN_VUE_BASE_PATH}')
-# TODO IF ADDING LINKS make sure to add files to gitignore
 links = [
-    [os.path.join(VUE_BASE_PATH, 'package.json'), os.path.join(PLUGIN_VUE_BASE_PATH, 'package.json')],
-    [os.path.join(VUE_BASE_PATH, 'yarn.lock'), os.path.join(PLUGIN_VUE_BASE_PATH, 'yarn.lock')],
-    [os.path.join(VUE_BASE_PATH, '.yarnrc.yml'), os.path.join(PLUGIN_VUE_BASE_PATH, '.yarnrc.yml')],
-    [os.path.join(VUE_BASE_PATH, 'tsconfig.json'), os.path.join(PLUGIN_VUE_BASE_PATH, 'tsconfig.json')],
-    [os.path.join(VUE_BASE_PATH, 'babel.config.js'), os.path.join(PLUGIN_VUE_BASE_PATH, 'babel.config.js')],
-    [os.path.join(VUE_BASE_PATH, 'babel.config.js.c'), os.path.join(PLUGIN_VUE_BASE_PATH, 'babel.config.js.c')],
-    [os.path.join(VUE_BASE_PATH, 'node_modules'), os.path.join(PLUGIN_VUE_BASE_PATH, 'node_modules')],
-    [os.path.join(VUE_BASE_PATH, 'src'), os.path.join(PLUGIN_VUE_BASE_PATH, 'src')],
+    [PLUGIN_VUE_BASE_PATH, os.path.join(VUE_BASE_PATH, 'open_data_plugin')],
 ]
 
 for l in links:
     try:
         os.symlink(l[0], l[1])
-    except Exception as e:
-        print(f'failed to link {e}')
+    except Exception:
         pass

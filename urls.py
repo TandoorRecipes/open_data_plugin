@@ -17,9 +17,5 @@ open_data_router.register(r'open-data-FDC', api.FDCViewSet, basename='open-data-
 open_data_router.register(r'open-data-stats', api.OpenDataStatisticsViewSet, basename='open-data-stats')
 
 urlpatterns = [
-    path('', views.test, name='open_data_index'),
 
 ]
-
-if DEBUG:
-    urlpatterns.append(path('test/', views.test, name='view_test'))
