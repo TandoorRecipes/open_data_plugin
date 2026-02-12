@@ -14,6 +14,7 @@ from recipes.plugins.open_data_plugin.models import OpenDataUnit, OpenDataFood, 
 from recipes.plugins.open_data_plugin.serializer import OpenDataUnitSerializer, OpenDataFoodSerializer, OpenDataCategorySerializer, OpenDataStoreSerializer, \
     OpenDataPropertySerializer, OpenDataConversionSerializer, OpenDataVersionSerializer
 from recipes.settings import FDC_API_KEY
+from cookbook.helper.HelperFunctions import safe_request
 
 
 class OpenDataIsOwner(permissions.BasePermission):
@@ -134,7 +135,7 @@ class OpenDataFoodViewSet(viewsets.ModelViewSet):
         if not food.fdc_id:
             return JsonResponse({'msg': 'Food has no FDC ID associated.'}, status=400, json_dumps_params={'indent': 4})
 
-        response = requests.get(f'https://api.nal.usda.gov/fdc/v1/food/{food.fdc_id}?api_key={FDC_API_KEY}')
+        response = safe_request('GET', f'https://api.nal.usda.gov/fdc/v1/food/{food.fdc_id}?api_key={FDC_API_KEY}')
         if response.status_code == 429:
             return JsonResponse(
                 {
@@ -203,7 +204,7 @@ class OpenDataConversionViewSet(viewsets.ModelViewSet):
 class FDCViewSet(viewsets.ViewSet):
     def retrieve(self, request, pk=None):
         pk = pk.strip()
-        response = requests.get(f'https://api.nal.usda.gov/fdc/v1/food/{pk}?api_key={FDC_API_KEY}')
+        response = safe_request('GET', f'https://api.nal.usda.gov/fdc/v1/food/{pk}?api_key={FDC_API_KEY}')
         if response.status_code == 429:
             return JsonResponse({'error', 'API Key Rate Limit reached/exceeded, see https://api.data.gov/docs/rate-limits/ for more information'}, status=429,
                                 json_dumps_params={'indent': 4})
